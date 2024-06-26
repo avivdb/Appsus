@@ -1,1 +1,68 @@
- /* mail list */
+.mails-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+.mails-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Add a bottom border to mimic Gmail */
+  background: #f2f6fc;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.mails-list li.unread {
+  font-weight: bold;
+  background: #ffffff;
+}
+
+.mails-list li:hover {
+  background: #e8effd;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mail-select-options {
+  display: flex;
+  gap: 10px;
+}
+
+.mail-select-options img {
+  width: 20px;
+  height: 20px;
+}
+
+.mail-from {
+  margin-inline-start: 20px;
+  flex: 1;
+}
+
+.mail-content {
+  flex: 2;
+  padding: 0 10px;
+}
+
+.sentAt {
+  color: gray;
+  cursor: pointer;
+}
+
+.mail-actions {
+  display: none;
+  position: absolute;
+  right: 10px;
+}
+
+.mails-list li:hover .mail-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.mails-list li:hover .sentAt {
+  display: none;
+}
