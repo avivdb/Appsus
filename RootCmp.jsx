@@ -9,6 +9,7 @@ import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 
 
 
+
 export function App() {
     return <Router>
         <section className="app">
@@ -18,6 +19,8 @@ export function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
+
+
             </Routes>
         </section>
     </Router>

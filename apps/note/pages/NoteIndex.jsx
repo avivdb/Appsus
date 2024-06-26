@@ -1,3 +1,4 @@
+import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { notesService } from "../services/note.service.js"
 
@@ -16,21 +17,12 @@ export function NoteIndex() {
             .catch(err => console.log('error:', err))
     }, [])
 
-    function removeNote(noteId) {
-        notesService.remove(noteId)
-            .then(() => {
-                setNotes(prevNotes => prevNotes.filter(note => noteId !== note.id))
-                showSuccessMsg('Note has been successfully removed!')
-            })
-            .catch(() => {
-                showErrorMsg(`couldn't remove note`)
-                navigate('/note')
-            })
-    }
+
 
     return (
         <section className="note-index">
-            <NoteList notes={notes} onRemove={removeNote} />
+            <NoteEdit />
+            <NoteList notes={notes} />
         </section>
     )
 }

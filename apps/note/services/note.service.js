@@ -90,11 +90,22 @@ function save(note) {
     }
 }
 
-function getEmptyNote(txt = '', imgUrl = '', createdAt = Date.now()) {
+function getEmptyNote() {
     return {
-        txt,
-        imgUrl,
-        createdAt,
+        id: '',
+        createdAt: '',
+        type: '',
+        isPinned: false,
+        info: {
+            title: '',
+            txt: '',
+            imgUrl: ``,
+            videoUrl: '',
+            todo: [],
+        },
+        style: {
+            backgroundColor: utilService.getRandomColor(),
+        }
     }
 }
 
@@ -115,8 +126,10 @@ function _createNotes() {
             type: '',
             isPinned: false,
             info: {
+                title: utilService.makeLorem(5),
                 txt: utilService.makeLorem(utilService.getRandomIntInclusive(0, 20)),
                 imgUrl: ``,
+                todo: [],
             },
             style: {
                 backgroundColor: utilService.getRandomColor(),
@@ -124,7 +137,7 @@ function _createNotes() {
         }
 
         notes.push(note)
-        console.log(note)
+        // console.log(note)
     }
     utilService.saveToStorage(NOTE_KEY, notes)
 }
