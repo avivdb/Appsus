@@ -1,0 +1,13 @@
+.note-preview{
+    display: grid;
+    /* gap:1em; */
+    justify-content: center;
+    justify-items: center;
+    align-items: end;
+
+    width: 300px;
+    height: fit-content;
+
+    border-radius: 10px;
+    padding: 1em;
+}

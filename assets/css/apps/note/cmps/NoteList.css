@@ -1,32 +1,27 @@
  /* note list */
- .notes-list ul {
+ .note-list ul {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-auto-flow: dense;
     justify-content: center;
-    gap: 10px;
 }
 
-.notes-list ul li {
-    display: flex;
-    position: relative;
-    flex-direction: column;
+.note-list ul li {
+    display: grid;
 
-    justify-content: center;
-    align-items: start;
-
+    justify-items: center;
     border-radius: 15px;
-    gap: 5px;
-    padding: 10px;
-    background: linear-gradient(360deg, #4070c4, #a7ffd6);
+    /* gap: 1em; */
+    padding: 1em;
 }
 
-.close {
+/* .close {
     position: absolute;
     border-radius: 50%;
     top: -7px;
     right: -7px;
     background: rgb(207, 158, 158);
-}
+} */
 
 /* .notes-list li:hover img {
     animation: bounceIn;
