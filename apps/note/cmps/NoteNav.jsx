@@ -1,3 +1,4 @@
+
 const { Link } = ReactRouterDOM
 
 export function NoteNav({ note, onRemove }) {

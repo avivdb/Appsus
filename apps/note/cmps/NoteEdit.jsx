@@ -2,6 +2,7 @@
 import { notesService } from "../services/note.service.js"
 import { showErrorMsg } from '../../../services/event-bus.service.js'
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { NoteNav } from "./NoteNav.jsx"
 
 const { useParams, useNavigate } = ReactRouter
 
@@ -27,53 +28,23 @@ export function NoteEdit() {
     }
 
     function handleChange({ target }) {
-        console.log(target);
-        const field = target.name;
-        let value = target.value;
-
-        // switch (target.type) {
-        //     case "number":
-        //     case "range":
-        //         value = +value;
-        //         break;
-        //     case "checkbox":
-        //         value = target.checked;
-        //         break;
-        // }
-
-        setBookToEdit((prevBook) => {
-            if (field === "info") {
-                return {
-                    ...prevBook,
-                    listPrice: { ...prevBook.listPrice, amount: value },
-                }
-            } else {
-
-                return ({ ...prevBook, [field]: value })
-            }
-        })
+        const { type, name: prop } = target
+        let { value } = target
+        // console.log('target.value,prop', target, value, prop)
+        setNote(prevNote => ({ ...prevNote, [prop]: value }))
     }
 
-    // function handleChangeListPrice({ target }) {
-    //     const { type, name: prop } = target
-    //     let { value } = target
 
-    //     switch (type) {
-    //         case 'range':
-    //         case 'number':
-    //             value = +value
-    //             break;
 
-    //         case 'checkbox':
-    //             value = target.checked
-    //             break;
-    //     }
+    function handleChangeInfo({ target }) {
+        const { type, name: prop } = target
+        let { value } = target
 
-    //     setNote(prevNote => ({
-    //         ...prevNote,
-    //         listPrice: { ...prevNote.listPrice, [prop]: value }
-    //     }))
-    // }
+        setNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, [prop]: value }
+        }))
+    }
 
     const {
         id,
@@ -93,19 +64,32 @@ export function NoteEdit() {
 
     return (
         <section className='note-edit'>
-            <h2>Edit Note</h2>
 
             <form onSubmit={onSave}>
-                <label htmlFor="note-title"></label>
-                <input onChange={handleChange} value={note.info.title}
-                    id='note-title' type="text" name='note-title' />
 
-                <label htmlFor="note-txt"></label>
-                <input onChange={handleChange} value={note.info.txt}
-                    id='note-txt' type="text" name='note-txt' />
+                <label htmlFor="title"></label>
+                <input
+                    onChange={handleChangeInfo}
+                    value={note.info.title}
+                    placeholder="Title"
+                    id='title'
+                    type="text"
+                    name='title' />
+
+                <label htmlFor="txt"></label>
+                <input
+                    onChange={handleChangeInfo}
+                    value={note.info.txt}
+                    placeholder="Take a note..."
+                    id='txt'
+                    type="text"
+                    name='txt' />
 
                 <button>Save</button>
+
             </form>
+            {<NoteNav note={note} />}
+
         </section>
     )
 }
