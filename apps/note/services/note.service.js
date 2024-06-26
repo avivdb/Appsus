@@ -110,7 +110,7 @@ function getEmptyNote() {
 }
 
 function getDefaultFilter(filterBy = {}) {
-    return { txt: filterBy.txt, type: filterBy.type, createdAt: filterBy.createdAt }
+    return { txt: filterBy.txt, type: filterBy.type }
 }
 
 function _createNotes() {
@@ -140,4 +140,15 @@ function _createNotes() {
         // console.log(note)
     }
     utilService.saveToStorage(NOTE_KEY, notes)
+}
+function _setNextPrevNoteId(note) {
+    return storageService.query(NOTE_KEY)
+        .then((notes) => {
+            const noteIdx = notes.findIndex((currNote) => currNote.id === note.id)
+            const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0]
+            const prevNote = notes[noteIdx - 1] ? notes[noteIdx - 1] : notes[notes.length - 1]
+            note.nextNoteId = nextNote.id
+            note.prevNoteId = prevNote.id
+            return note
+        })
 }
