@@ -110,13 +110,13 @@ function _createNotes() {
     for (let i = 0; i < 20; i++) {
         const note = {
             id: utilService.makeId(),
-            title: utilService.makeLorem(2),
+            txt: utilService.makeLorem(2),
             type: "",
-            createdAt: utilService.getRandomIntInclusive(1950, 2024),
-            imgUrl: `/assets/notesImages/${i + 1}.jpg`,
+            createdAt: utilService.getRandomIntInclusive(1, 31) + utilService.getRandomIntInclusive(1, 12) + utilService.getRandomIntInclusive(2022, 2024),
+            imgUrl: ``,
         }
 
     }
     notes.push(note)
+    utilService.saveToStorage(NOTE_KEY, notes)
 }
-utilService.saveToStorage(NOTE_KEY, notes)
