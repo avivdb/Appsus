@@ -15,7 +15,7 @@
   transition: background 0.3s ease, height 0.3s ease;
   position: relative;
   cursor: pointer;
-  height: 2em;
+  min-height: 2.5em; /* Minimum height to maintain size */
 }
 
 .mails-list li.unread {
@@ -26,19 +26,7 @@
 .mails-list li:hover {
   background: #e8effd;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  height: 3em;
-}
-
-.mail-select-options {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between; /* Added to space out elements */
-  margin-right: 10px;
-}
-
-.mail-select-options img {
-  width: 20px;
-  height: 20px;
+  min-height: 2.875em; /* Increase min-height by 15% */
 }
 
 .mail-from {
@@ -50,10 +38,9 @@
 }
 
 .sentAt {
-  text-align: right; /* Align to the end */
-  /* color: gray; */
+  color: gray;
   cursor: pointer;
-  font-size: 0.8em;
+  text-align: right; /* Align to the end */
 }
 
 .mail-actions {
