@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    getRandomDate
 }
 
 function makeId(length = 6) {
@@ -70,4 +71,11 @@ function saveToStorage(key, val) {
 function loadFromStorage(key) {
     var val = localStorage.getItem(key)
     return JSON.parse(val)
+}
+
+function getRandomDate(start, end) {
+    const startDate = new Date(start).getTime();
+    const endDate = new Date(end).getTime();
+    const randomTime = Math.random() * (endDate - startDate) + startDate;
+    return new Date(randomTime);
 }

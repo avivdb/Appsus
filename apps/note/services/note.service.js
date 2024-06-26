@@ -44,6 +44,7 @@ const gNotes = [
         }
     }
 ]
+_createNotes()
 
 export const notesService = {
     query,
@@ -103,20 +104,27 @@ function getDefaultFilter(filterBy = {}) {
 
 function _createNotes() {
 
-    const notes = utilService.loadFromStorage(NOTE_KEY) || gNotes
+    const notes = utilService.loadFromStorage(NOTE_KEY) || []
 
     if (notes && notes.length) return
 
     for (let i = 0; i < 20; i++) {
         const note = {
             id: utilService.makeId(),
-            txt: utilService.makeLorem(2),
-            type: "",
-            createdAt: utilService.getRandomIntInclusive(1, 31) + utilService.getRandomIntInclusive(1, 12) + utilService.getRandomIntInclusive(2022, 2024),
-            imgUrl: ``,
+            createdAt: utilService.getRandomDate('2022-01-01', '2024-06-30'),
+            type: '',
+            isPinned: false,
+            info: {
+                txt: utilService.makeLorem(utilService.getRandomIntInclusive(0, 20)),
+                imgUrl: ``,
+            },
+            style: {
+                backgroundColor: utilService.getRandomColor(),
+            }
         }
 
+        notes.push(note)
+        console.log(note)
     }
-    notes.push(note)
     utilService.saveToStorage(NOTE_KEY, notes)
 }
