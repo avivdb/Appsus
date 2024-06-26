@@ -96,7 +96,7 @@ function _createMails() {
         subject: 'Catch soon',
         body: 'Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         bodySummary: 'Ut enim ad minim',
-        isRead: true,
+        isRead: false,
         sentAt: 1553812330500,
         removedAt: null,
         from: 'momo@momo.com',
