@@ -1,1 +1,10 @@
- /* mail index  */
+/* Added styles for mail-index to ensure proper layout */
+.mail-index {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.mail-index > div {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
