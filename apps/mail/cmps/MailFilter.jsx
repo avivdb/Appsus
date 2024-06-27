@@ -1,84 +1,108 @@
 const { useState, useEffect } = React
 
-// export function BookFilter({ filterBy, onSetFilter }) {
+import { mailService } from '../services/mail.service.js'
+
+export function mailFilter({ onSetFilter, filterBy }) {
+  const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+
+  useEffect(() => {
+    onSetFilter(filterByToEdit)
+  }, [filterByToEdit])
+
+  function handleChange(ev) {
+    const field = ev.target.name
+    const value =
+      ev.target.type === 'number' ? +ev.target.value : ev.target.value
+    setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+  }
+
+  function onFilter(ev) {
+    ev.preventDefault()
+    onSetFilter(filterByToEdit)
+  }
+
+  const { from, body } = filterByToEdit
+
+  return (
+    <section className='filter-container'>
+      <div className='filter-inside-container'>
+        <h2 className='filter-header'>Filter mails:</h2>
+        <form className='mails-filter' onSubmit={onFilter}>
+          <div className='filter-section'>
+            <label htmlFor='byFrom'>from:</label>
+            <input
+              type='text'
+              id='byFrom'
+              name='from'
+              value={from}
+              onChange={handleChange}
+              className='input'
+              placeholder='Search by from...'
+            />
+          </div>
+
+          <div className='filter-section'>
+            <label htmlFor='byBody'>body:</label>
+            <input
+              type='number'
+              id='body'
+              name='body'
+              value={body}
+              onChange={handleChange}
+              className='input'
+              placeholder='Search by body'
+            />
+          </div>
+        </form>
+      </div>
+    </section>
+  )
+}
+
+// import { mailService } from '../services/mail.service.js'
+// import { utilService } from '../../../services/util.service.js'
+
+// const { useEffect, useState, useRef } = React
+
+// export function MailFilter({ filterBy, onFilterBy }) {
 //   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+//   const initialFilterBy = useRef({ ...filterBy })
+
+//   const onSetFilterDebounce = useRef(utilService.debounce(onFilterBy, 500))
+//   // const onSetFilterDebounce = utilService.debounce(onFilterBy, 500)
 
 //   useEffect(() => {
-//     onSetFilter(filterByToEdit)
+//     onSetFilterDebounce.current(filterByToEdit)
 //   }, [filterByToEdit])
 
 //   function handleChange({ target }) {
-//     const field = target.name
-//     let value = target.value
-
-//     switch (target.type) {
-//       case 'number':
-//       case 'range':
-//         value = +value
-//         break
-//       case 'checkbox':
-//         value = target.checked
-//         break
-
-//       default:
-//         break
-//     }
-//     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-//   }
-//   // function handleChange({ target }) {
-//   //   // console.log(target)
-//   //   const { value, name: field } = target
-//   //   setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
-//   // }
-
-//   function handleTitleChange({ target }) {
-//     // console.log(filterByToEdit)
-//     const { value } = target
-//     // console.log(value)
-//     setFilterByToEdit((prevFilter) => ({ ...prevFilter, title: value }))
+//     const { name, type } = target
+//     const value = type === 'number' ? +target.value : target.value
+//     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [name]: value }))
 //   }
 
-//   function handleAmountChange() {}
-//   function handleAuthorsChange() {}
-
-//   function onSubmitFilter(ev) {
-//     ev.preventDefault()
-//     onSetFilter(filterByToEdit)
-//     // console.log('filterByToEdit', filterByToEdit)
+//   function reset() {
+//     setFilterByToEdit(initialFilterBy.current)
 //   }
-
-//   const { title, amount, authors } = filterByToEdit
 
 //   return (
-//     <section className='book-filter'>
-//       <h2>Filter Books</h2>
-//       <form onSubmit={onSubmitFilter}>
-//         <label htmlFor='title'>Book Title</label>
-//         <input
-//           value={title}
-//           onChange={handleChange}
-//           type='text'
-//           name='title'
-//           id='title'
-//         />
-//         <label htmlFor='authors'>Authors</label>
-//         <input
-//           value={authors}
-//           onChange={handleChange}
-//           type='text'
-//           name='authors'
-//           id='authors'
-//         />
-//         <label htmlFor='amount'>amount</label>
-//         <input
-//           value={amount || ''}
-//           onChange={handleChange}
-//           type='number'
-//           name='amount'
-//           id='amount'
-//         />
-//         <button>Submit</button>
-//       </form>
+//     <section className='mails-filter'>
+//       <h3>Filter</h3>
+//       <input
+//         onChange={handleChange}
+//         value={filterByToEdit.from}
+//         type='text'
+//         name='from'
+//         placeholder='Insert mail name'
+//       />
+//       <input
+//         onChange={handleChange}
+//         value={filterByToEdit.minPrice}
+//         type='number'
+//         name='minPrice'
+//         placeholder='Insert mail price'
+//       />
+//       <button onClick={reset}>Reset</button>
 //     </section>
 //   )
 // }
