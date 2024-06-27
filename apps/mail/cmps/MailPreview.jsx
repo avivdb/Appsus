@@ -1,24 +1,79 @@
 import { mailService } from '../services/mail.service.js'
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onMailClick, onRemoveMail }) {
+  function onCheck(button) {
+    switch (button.className.split(' ')[0]) {
+      case 'check-box':
+        button.classList.toggle('unchecked')
+        button.classList.toggle('checked')
+        break
+      case 'star':
+        button.classList.toggle('unchecked')
+        button.classList.toggle('checked')
+        break
+      case 'important':
+        button.classList.toggle('unchecked')
+        button.classList.toggle('checked')
+        break
+
+      // Add cases for other buttons as needed
+      default:
+        break
+    }
+  }
+
+  function isClickSelectOptions({ button }) {
+    // console.log('isclicked')
+    switch (button.className.split(' ')[0]) {
+      case 'check-box':
+        // console.log('check-box')
+        break
+      case 'star':
+        // console.log('star')
+        break
+      case 'important':
+        // console.log('important')
+        break
+      case 'delete':
+        console.log('delete')
+        break
+      default:
+        break
+    }
+  }
+
   return (
-    <React.Fragment>
-      {/* <article className='mail-preview'> */}
+    <div
+      onClick={() => onMailClick(mail.id)}
+      className={`mail-preview ${mail.isRead ? '' : 'unread'}`}
+    >
       <div className='mail-select-options'>
-        <img
-          src='apps/mail/assets/icons/check_box_outline_blank_baseline_nv700_20dp.png'
+        <button
           className='check-box unchecked'
-          alt='check box'
+          aria-label='check box'
+          onClick={(e) => {
+            e.stopPropagation()
+            onCheck(e.currentTarget)
+            isClickSelectOptions({ button: e.currentTarget })
+          }}
         />
-        <img
-          src='apps/mail/assets/icons/star_baseline_nv700_20dp.png'
+        <button
           className='star unchecked'
-          alt='star'
+          aria-label='star'
+          onClick={(e) => {
+            e.stopPropagation()
+            onCheck(e.currentTarget)
+            isClickSelectOptions({ button: e.currentTarget })
+          }}
         />
-        <img
-          src='apps/mail/assets/icons/label_important_baseline_nv700_20dp.png'
+        <button
           className='important unchecked'
-          alt='important'
+          aria-label='important'
+          onClick={(e) => {
+            e.stopPropagation()
+            onCheck(e.currentTarget)
+            isClickSelectOptions({ button: e.currentTarget })
+          }}
         />
       </div>
       <span className='mail-from'>
@@ -27,20 +82,21 @@ export function MailPreview({ mail }) {
       <span className='mail-content'>body: {mail.bodySummary}</span>
       <span className='sentAt'>{mailService.convertToDate(mail.sentAt)}</span>
       <div className='mail-actions'>
-        <img
-          src='apps/mail/assets/icons/delete_baseline_nv700_20dp.png'
-          alt='delete'
+        <button
+          className='delete'
+          aria-label='delete'
+          onClick={(e) => {
+            e.stopPropagation()
+            onRemoveMail(mail.id)
+            // onCheck(e.currentTarget)
+            // isClickSelectOptions({ button: e.currentTarget })
+          }}
         />
-        <img
-          src={`apps/mail/assets/icons/${
-            mail.isRead
-              ? 'drafts_baseline_nv700_20dp'
-              : 'mark_email_unread_baseline_nv700_20dp'
-          }.png`}
-          alt='unread'
+        <button
+          className={mail.isRead ? 'drafts' : 'mark-email-unread'}
+          aria-label={mail.isRead ? 'drafts' : 'mark email unread'}
         />
       </div>
-      {/* </article> */}
-    </React.Fragment>
+    </div>
   )
 }

@@ -1,0 +1,92 @@
+.mail-preview {
+  display: contents; /* Use contents to make the children use the grid from the parent */
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background: #f2f6fc;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mail-preview.unread {
+  font-weight: bold;
+  background: #ffffff;
+}
+
+.mail-preview:hover {
+  background: #e8effd;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mail-preview:hover .mail-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.mail-preview:hover .sentAt {
+  visibility: hidden;
+}
+
+button.delete,
+button.drafts,
+button.mark-email-unread {
+  width: 20px;
+  height: 20px;
+  background-color: #e8effd;
+  border: none;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.mail-select-options {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between; /* Added to space out elements */
+  margin-right: 10px;
+}
+
+.mail-select-options button {
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+button.check-box.unchecked {
+  background-image: url('../../../../../apps/mail/assets/icons/check_box_outline_blank_baseline_nv700_20dp.png');
+}
+
+button.check-box.checked {
+  background-image: url('../../../../../apps/mail/assets/icons/check_box_baseline_nv700_20dp.png');
+}
+
+button.star.unchecked {
+  background-image: url('../../../../../apps/mail/assets/icons/star_baseline_nv700_20dp.png');
+}
+
+button.star.checked {
+  background-image: url('../../../../../apps/mail/assets/icons/star_fill_googyellow500_20dp.png');
+}
+
+button.important.unchecked {
+  background-image: url('../../../../../apps/mail/assets/icons/label_important_baseline_nv700_20dp.png');
+}
+button.important.checked {
+  background-image: url('../../../../../apps/mail/assets/icons/label_important_fill_googyellow500_20dp.png');
+}
+
+button.delete {
+  background-image: url('../../../../../apps/mail/assets/icons/delete_baseline_nv700_20dp.png');
+}
+
+button.drafts {
+  background-image: url('../../../../../apps/mail/assets/icons/drafts_baseline_nv700_20dp.png');
+}
+
+button.mark-email-unread {
+  background-image: url('../../../../../apps/mail/assets/icons/mark_email_unread_baseline_nv700_20dp.png');
+}

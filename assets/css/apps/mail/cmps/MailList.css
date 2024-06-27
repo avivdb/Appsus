@@ -1,13 +1,13 @@
 .mails-list {
-  list-style-type: none;
+  list-style-type: none; /* Remove bullet points */
   padding: 0;
   margin: 0;
   font-size: 16px;
 }
 
 .mails-list li {
-  display: flex;
-  justify-content: space-between;
+  display: grid; /* Changed from flex to grid */
+  grid-template-columns: 1fr 2fr 4fr 1fr; /* Four columns with respective sizing */
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
@@ -15,7 +15,7 @@
   transition: background 0.3s ease, height 0.3s ease;
   position: relative;
   cursor: pointer;
-  height: 2.5em;
+  min-height: 2.5em; /* Minimum height to maintain size */
 }
 
 .mails-list li.unread {
@@ -26,32 +26,21 @@
 .mails-list li:hover {
   background: #e8effd;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  height: 3em;
-}
-
-.mail-select-options {
-  display: flex;
-  gap: 10px;
-}
-
-.mail-select-options img {
-  width: 20px;
-  height: 20px;
+  min-height: 2.875em; /* Increase min-height by 15% */
 }
 
 .mail-from {
   margin-inline-start: 20px;
-  flex: 1;
 }
 
 .mail-content {
-  flex: 2;
   padding: 0 10px;
 }
 
 .sentAt {
   color: gray;
   cursor: pointer;
+  text-align: right; /* Align to the end */
 }
 
 .mail-actions {
