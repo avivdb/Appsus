@@ -3,6 +3,7 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { notesService } from "../services/note.service.js"
 import { showErrorMsg } from '../../../services/event-bus.service.js'
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { AppHeader, NoteHeader } from "../cmps/NoteHeader.jsx"
 
 const { useEffect, useState } = React
 
@@ -12,12 +13,18 @@ const { useEffect, useState } = React
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(notesService.getDefaultFilter())
+    // console.log('filterBy', filterBy)
 
     useEffect(() => {
-        notesService.query()
+        notesService.query(filterBy)
             .then(notes => setNotes(notes))
             .catch(err => console.log('error:', err))
     }, [notes, filterBy])
+
+    function onSetFilterBy(newFilter) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...newFilter }))
+    }
+
 
     function removeNote(noteId) {
         notesService.remove(noteId)
@@ -34,6 +41,7 @@ export function NoteIndex() {
 
     return (
         <section className="note-index">
+            <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <NoteEdit />
             <NoteList notes={notes} removeNote={removeNote} />
         </section>
