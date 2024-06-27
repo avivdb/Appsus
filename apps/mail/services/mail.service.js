@@ -26,7 +26,7 @@ export const mailService = {
   get,
   remove,
   save,
-  //   getEmptyBook: getEmptyBook,
+  getEmptyMail: getEmptyMail,
   //   getNextCarId: getNextBookId,
   //   getFilterBy,
   //   setFilterBy,

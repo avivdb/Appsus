@@ -1,6 +1,9 @@
+const { Link } = ReactRouterDOM
+
 import { MailPreview } from '../cmps/MailPreview.jsx'
 import { MailList } from '../cmps/MailList.jsx'
 import { MailDetails } from './MailDetails.jsx'
+import { MailCompose } from './MailCompose.jsx'
 import { mailService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 
@@ -52,6 +55,7 @@ export function MailIndex() {
       ) : (
         <React.Fragment>
           <div>mail app</div>
+          <MailCompose mails={mails} />
           <MailList
             mails={mails}
             onMailClick={handleMailClick}
