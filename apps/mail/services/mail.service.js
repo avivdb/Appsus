@@ -4,7 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
-var gFilterBy = { title: '', amount: 0, authors: '' }
+var gFilterBy = { title: '', subject: 0, body: '' }
 _createMails()
 
 const loggedinUser = {
@@ -12,13 +12,13 @@ const loggedinUser = {
   fullname: 'Mahatma Appsus',
 }
 
-const filterBy = {
-  status: 'inbox/sent/trash/draft',
-  txt: 'puki', // no need to support complex text search
-  isRead: true, // (optional property, if missing: show all)
-  isStared: true, // (optional property, if missing: show all)
-  lables: ['important', 'romantic'], // has any of the labels
-}
+// const filterBy = {
+//   status: 'inbox/sent/trash/draft',
+//   txt: 'puki', // no need to support complex text search
+//   isRead: true, // (optional property, if missing: show all)
+//   isStared: true, // (optional property, if missing: show all)
+//   lables: ['important', 'romantic'], // has any of the labels
+// }
 
 export const mailService = {
   query,
@@ -26,29 +26,44 @@ export const mailService = {
   get,
   remove,
   save,
-  //   getEmptyBook: getEmptyBook,
+  getEmptyMail: getEmptyMail,
+  getDefaultFilter,
   //   getNextCarId: getNextBookId,
   //   getFilterBy,
   //   setFilterBy,
-  //   getDefaultFilter,
 }
 
 function query(filterBy = {}) {
   return storageService.query(MAIL_KEY).then((mails) => {
-    if (filterBy.title) {
-      const regex = new RegExp(filterBy.title, 'i')
-      books = books.filter((book) => regex.test(book.title))
+    if (filterBy.from) {
+      const fromFilter = filterBy.from
+        .replace(/[.@]/g, '')
+        .toLowerCase()
+        .replace('com', '')
+      mails = mails.filter((mail) => {
+        const normalizedFrom = mail.from
+          .replace(/[.@]/g, '')
+          .toLowerCase()
+          .replace('com', '')
+        return normalizedFrom.includes(fromFilter)
+      })
     }
-    if (filterBy.amount) {
-      books = books.filter((book) => book.listPrice.amount >= filterBy.amount)
+    if (filterBy.subject) {
+      const regex = new RegExp(filterBy.subject, 'i')
+      mails = mails.filter((mail) => regex.test(mail.subject))
     }
-    if (filterBy.authors) {
-      const regex = new RegExp(filterBy.authors, 'i')
-      books = books.filter((book) => regex.test(book.authors))
+    if (filterBy.body) {
+      const regex = new RegExp(filterBy.body, 'i')
+      mails = mails.filter((mail) => regex.test(mail.body))
     }
+    console.log('mails: ', mails)
 
     return mails
   })
+}
+
+function getDefaultFilter(filterBy = { from: '', subject: '', body: '' }) {
+  return { from: filterBy.from, subject: filterBy.subject, body: filterBy.body }
 }
 
 function get(mailId) {
@@ -71,24 +86,32 @@ function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
 }
 
-function save(book) {
-  if (book.id) {
-    return storageService.put(MAIL_KEY, book)
+function save(mail) {
+  if (mail.id) {
+    return storageService.put(MAIL_KEY, mail)
   } else {
-    return storageService.post(MAIL_KEY, book)
+    return storageService.post(MAIL_KEY, mail)
   }
 }
 
-function getEmptyMail(title = '', amount = 0) {
-  // return { id: '', vendor, maxSpeed }
+function getEmptyMail(from = '', subject = '', body = '') {
   return {
-    id: '',
-    title,
-    authors: 'Not An Author',
-    amount,
-    thumbnail: './assets/img/returnnull.jpg',
+    from,
+    subject,
+    body,
   }
 }
+
+// function getEmptyMail(title = '', subject = 0) {
+//   // return { id: '', vendor, maxSpeed }
+//   return {
+//     id: '',
+//     title,
+//     body: 'Not An Author',
+//     subject,
+//     thumbnail: './assets/img/returnnull.jpg',
+//   }
+// }
 
 // Example usage
 const timestamp = 1627488000000 // Replace this with your actual timestamp

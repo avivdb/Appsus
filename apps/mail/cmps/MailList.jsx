@@ -1,3 +1,5 @@
+const { Link } = ReactRouterDOM
+
 import { MailPreview } from '../cmps/MailPreview.jsx'
 import { mailService } from '../services/mail.service.js'
 
