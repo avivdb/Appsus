@@ -1,6 +1,6 @@
 import { mailService } from '../services/mail.service.js'
 
-export function MailPreview({ mail, onMailClick }) {
+export function MailPreview({ mail, onMailClick, onRemoveMail }) {
   function onCheck(button) {
     switch (button.className.split(' ')[0]) {
       case 'check-box':
@@ -33,6 +33,9 @@ export function MailPreview({ mail, onMailClick }) {
         break
       case 'important':
         // console.log('important')
+        break
+      case 'delete':
+        console.log('delete')
         break
       default:
         break
@@ -79,7 +82,16 @@ export function MailPreview({ mail, onMailClick }) {
       <span className='mail-content'>body: {mail.bodySummary}</span>
       <span className='sentAt'>{mailService.convertToDate(mail.sentAt)}</span>
       <div className='mail-actions'>
-        <button className='delete' aria-label='delete' />
+        <button
+          className='delete'
+          aria-label='delete'
+          onClick={(e) => {
+            e.stopPropagation()
+            onRemoveMail(mail.id)
+            // onCheck(e.currentTarget)
+            // isClickSelectOptions({ button: e.currentTarget })
+          }}
+        />
         <button
           className={mail.isRead ? 'drafts' : 'mark-email-unread'}
           aria-label={mail.isRead ? 'drafts' : 'mark email unread'}

@@ -24,8 +24,8 @@ export const mailService = {
   query,
   convertToDate,
   get,
-  //   remove,
-  //   save,
+  remove,
+  save,
   //   getEmptyBook: getEmptyBook,
   //   getNextCarId: getNextBookId,
   //   getFilterBy,
@@ -65,6 +65,29 @@ function convertToDate(timestamp) {
     // minute: '2-digit',
   }
   return date.toLocaleDateString(undefined, options)
+}
+
+function remove(mailId) {
+  return storageService.remove(MAIL_KEY, mailId)
+}
+
+function save(book) {
+  if (book.id) {
+    return storageService.put(MAIL_KEY, book)
+  } else {
+    return storageService.post(MAIL_KEY, book)
+  }
+}
+
+function getEmptyMail(title = '', amount = 0) {
+  // return { id: '', vendor, maxSpeed }
+  return {
+    id: '',
+    title,
+    authors: 'Not An Author',
+    amount,
+    thumbnail: './assets/img/returnnull.jpg',
+  }
 }
 
 // Example usage
