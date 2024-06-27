@@ -64,10 +64,15 @@ function query(filterBy = {}) {
 
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
-                notes = notes.filter(note => regExp.test(note.title))
+                notes = notes.filter(note => regExp.test(note.info.title))
             }
-            if (filterBy.minPrice) {
-                notes = notes.filter(note => note.listPrice.amount >= filterBy.minPrice)
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note => regExp.test(note.info.txt))
+            }
+            if (filterBy.type) {
+
+                notes = notes.filter(note => note.type === filterBy.type)
             }
             return notes
         })
@@ -110,7 +115,7 @@ function getEmptyNote() {
 }
 
 function getDefaultFilter(filterBy = {}) {
-    return { txt: filterBy.txt, type: filterBy.type }
+    return { txt: filterBy.txt || '', type: filterBy.type || '', title: filterBy.title || '' }
 }
 
 function _createNotes() {
