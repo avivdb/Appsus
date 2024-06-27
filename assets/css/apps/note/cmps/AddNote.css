@@ -1,0 +1,7 @@
+.add-note{
+    justify-self: center;
+    border:1px solid lightgrey;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.425), inset 0 -1px 0 rgba(0, 0, 0, 0.543);
+
+
+}

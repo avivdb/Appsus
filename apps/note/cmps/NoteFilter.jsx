@@ -15,7 +15,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
 
     function handleChange({ target }) {
         console.log('target', target)
-        const { type, name: prop } = target
+        const { name: prop } = target
         let { value } = target
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [prop]: value }))
         console.log('target, value:, prop:', target, value, prop)
@@ -27,8 +27,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
         setFilterByToEdit({ title: '', txt: '', type: '' })
     }
 
-    return <section className='notes-filter'>
-        <h3>Filter</h3>
+    return <section className='note-filter'>
         <input onChange={handleChange} value={filterByToEdit.title} type="text" name='title' placeholder='Search by title' />
         <input onChange={handleChange} value={filterByToEdit.txt} type="text" name='txt' placeholder='Search by txt ' />
         <button onClick={reset}>Reset</button>

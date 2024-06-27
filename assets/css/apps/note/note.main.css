@@ -1,0 +1,8 @@
+@import '/assets/css/apps/note/pages/NoteIndex.css';
+@import '/assets/css/apps/note/cmps/NoteList.css';
+@import '/assets/css/apps/note/cmps/NotePreview.css';
+@import '/assets/css/apps/note/cmps/NoteNav.css';
+@import '/assets/css/apps/note/cmps/NoteEdit.css';
+@import '/assets/css/apps/note/cmps/NoteHeader.css';
+@import '/assets/css/apps/note/cmps/AddNote.css';
+@import '/assets/css/apps/note/cmps/NoteFilter.css'

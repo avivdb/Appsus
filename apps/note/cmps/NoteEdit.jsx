@@ -1,28 +1,37 @@
 
 import { notesService } from "../services/note.service.js"
-import { showErrorMsg } from '../../../services/event-bus.service.js'
-import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { NoteNav } from "./NoteNav.jsx"
+
 
 const { useParams, useNavigate } = ReactRouter
 
 const { useState, useEffect } = React
 
-export function NoteEdit() {
+export function NoteEdit({ note, setIsAdd, setIsEdit }) {
 
-    const [note, setNote] = useState(notesService.getEmptyNote())
+    const [currNote, setCurrNote] = useState(note || notesService.getEmptyNote())
     const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!params.noteId) return
-        notesService.get(params.noteId).then(setNote)
-    }, [])
+        if (currNote) return
+        if (params.noteId) {
+            notesService.get(params.noteId).then(setCurrNote)
+        }
+    }, [currNote, params.noteId])
 
     function onSave(ev) {
+        // console.log(ev);
+        console.log(setIsAdd === setIsEdit)
         ev.preventDefault()
-        notesService.save(note)
-            .then(() => showSuccessMsg('Note has successfully saved!'))
+        notesService.save(currNote)
+            .then(() => {
+                showSuccessMsg('Note has successfully saved!')
+                setIsEdit(false)
+                setIsAdd(false)
+
+            })
             .catch(() => showErrorMsg(`couldn't save note`))
             .finally(() => navigate('/note'))
     }
@@ -31,7 +40,7 @@ export function NoteEdit() {
         const { type, name: prop } = target
         let { value } = target
         // console.log('target.value,prop', target, value, prop)
-        setNote(prevNote => ({ ...prevNote, [prop]: value }))
+        setCurrNote(prevNote => ({ ...prevNote, [prop]: value }))
     }
 
 
@@ -40,7 +49,7 @@ export function NoteEdit() {
         const { type, name: prop } = target
         let { value } = target
 
-        setNote(prevNote => ({
+        setCurrNote(prevNote => ({
             ...prevNote,
             info: { ...prevNote.info, [prop]: value }
         }))
@@ -60,17 +69,16 @@ export function NoteEdit() {
         style: {
             backgroundColor,
         }
-    } = note
+    } = currNote
 
     return (
         <section className='note-edit'>
-
             <form onSubmit={onSave}>
 
                 <label htmlFor="title"></label>
                 <input
                     onChange={handleChangeInfo}
-                    value={note.info.title}
+                    value={currNote.info.title}
                     placeholder="Title"
                     id='title'
                     type="text"
@@ -79,16 +87,15 @@ export function NoteEdit() {
                 <label htmlFor="txt"></label>
                 <input
                     onChange={handleChangeInfo}
-                    value={note.info.txt}
+                    value={currNote.info.txt}
                     placeholder="Take a note..."
                     id='txt'
                     type="text"
                     name='txt' />
 
-                <button>Save</button>
-
             </form>
-            {<NoteNav note={note} />}
+
+            {<NoteNav note={currNote} onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))} onSave={onSave} />}
 
         </section>
     )

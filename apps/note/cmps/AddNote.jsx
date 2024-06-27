@@ -1,9 +1,14 @@
-export function AddNote() {
+import { NoteEdit } from "./NoteEdit.jsx"
+
+export function AddNote({ setIsAdd }) {
 
     return (
-        <form>
-            <label htmlFor="note-txt"></label>
+        <section className="add-note" onClick={() => setIsAdd(true)}>
+            <form>
+                <label htmlFor="add-note-txt"></label>
+                <input type="text" placeholder="take note.." name="add-note-txt" id="add-note-txt" />
+            </form>
 
-        </form>
+        </section>
     )
-}
+} 

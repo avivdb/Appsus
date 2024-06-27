@@ -3,7 +3,8 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { notesService } from "../services/note.service.js"
 import { showErrorMsg } from '../../../services/event-bus.service.js'
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
-import { AppHeader, NoteHeader } from "../cmps/NoteHeader.jsx"
+import { NoteHeader } from "../cmps/NoteHeader.jsx"
+import { AddNote } from "../cmps/AddNote.jsx"
 
 const { useEffect, useState } = React
 
@@ -13,6 +14,7 @@ const { useEffect, useState } = React
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(notesService.getDefaultFilter())
+    const [isAdd, setIsAdd] = useState(false)
     // console.log('filterBy', filterBy)
 
     useEffect(() => {
@@ -42,7 +44,13 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <NoteEdit />
+
+            {isAdd ? (
+                <NoteEdit note={notesService.getEmptyNote()} setIsAdd={setIsAdd} />
+            ) : (
+
+                <AddNote setIsAdd={setIsAdd} />
+            )}
             <NoteList notes={notes} removeNote={removeNote} />
         </section>
     )

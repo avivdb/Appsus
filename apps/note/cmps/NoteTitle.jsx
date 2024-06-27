@@ -1,5 +1,5 @@
 export function NoteTitle({ note }) {
     return (
-        <h1>{note.info.title.toUpperCase()}</h1>
+        <h2>{note.info.title.toUpperCase()}</h2>
     )
 }

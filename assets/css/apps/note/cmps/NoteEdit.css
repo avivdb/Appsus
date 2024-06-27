@@ -1,8 +1,20 @@
 .note-edit form{
+    /* display: grid; */
+    justify-items: center;
+    gap: 1px;
+}
+
+.note-edit{
     display: grid;
     justify-content: center;
-    gap: 1px;
-    
-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
-border: solid transparent;
+    justify-items: center;
+    justify-self: center;
+    gap: 1em;
+    margin: 0.5em;
+    /* border:1px solid lightgrey; */
+    border-radius: 8px;
+    /* box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.425), inset 0 -1px 0 rgba(0, 0, 0, 0.543); */
+    /* width: 300px; */
+    padding: 0.5em;
 }
+

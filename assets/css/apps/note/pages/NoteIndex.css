@@ -1,1 +1,29 @@
- /* note index */
+.note-index {
+    display: grid;
+    font-family: 'Roboto';
+    font-size: 15px;
+    color: #202124;
+     padding: 1em;
+ }
+
+input{
+    border:none;
+    padding: 1em;
+    width: 100%;
+    
+    font-size: 15px;
+    color: #202124;
+    font-family: 'Roboto';
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    background-color: inherit;
+    /* gap: 1em; */
+    /* border-radius: 8px; */
+    /* padding: 0.5em; */
+}
+ input:focus{
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}

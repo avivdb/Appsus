@@ -1,4 +1,8 @@
 .note-header{
     display: flex;
-    justify-content: space-between;
+    gap: 1em;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 1em;
+    margin-inline-end: 1em;
 }
