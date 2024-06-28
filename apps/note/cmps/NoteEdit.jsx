@@ -2,6 +2,8 @@
 import { notesService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { NoteNav } from "./NoteNav.jsx"
+import { NoteImg } from "./NoteImg.jsx"
+import { NoteVideo } from './NoteVideo.jsx'
 
 
 const { useParams, useNavigate } = ReactRouter
@@ -11,8 +13,11 @@ const { useState, useEffect } = React
 export function NoteEdit({ note, setIsAdd, setIsEdit }) {
 
     const [currNote, setCurrNote] = useState(note || notesService.getEmptyNote())
-    const [newImgUrl, setNewImgUrl] = useState('');
-    const [showImgUrlInput, setShowImgUrlInput] = useState(false);
+    const [newImgUrl, setNewImgUrl] = useState('')
+    const [showImgUrlInput, setShowImgUrlInput] = useState(false)
+    const [newVideoUrl, setNewVideoUrl] = useState('')
+    const [showVideoUrlInput, setShowVideoUrlInput] = useState(false)
+
     const params = useParams()
     const navigate = useNavigate()
 
@@ -67,6 +72,32 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
         setShowImgUrlInput(false);  // Hide the input after adding
     }
 
+    function handleDeleteImg(index) {
+        const updatedImgUrls = currNote.info.imgUrls.filter((_, i) => i !== index);
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, imgUrls: updatedImgUrls }
+        }));
+    }
+
+    function handleAddVideo() {
+        const updatedVideoUrls = currNote.info.videoUrls ? [...currNote.info.videoUrls, newVideoUrl] : [newVideoUrl];
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, videoUrls: updatedVideoUrls }
+        }));
+        setNewVideoUrl('');  // Clear the input after adding
+        setShowVideoUrlInput(false);  // Hide the input after adding
+    }
+
+    function handleDeleteVideo(index) {
+        const updatedVideoUrls = currNote.info.videoUrls.filter((_, i) => i !== index);
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, videoUrls: updatedVideoUrls }
+        }));
+    }
+
     const {
         id,
         createdAt,
@@ -105,6 +136,13 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                     type="text"
                     name='txt' />
 
+                {currNote.info.imgUrls && currNote.info.imgUrls.map((url, index) => (
+                    <div key={index}>
+                        <NoteImg note={{ info: { imgUrl: url } }} />
+                        <button onClick={() => handleDeleteImg(index)}>Delete</button>
+                    </div>
+                ))}
+
                 {showImgUrlInput && (
                     <div>
                         <label htmlFor="newImgUrl">Image URL</label>
@@ -114,9 +152,30 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                             value={newImgUrl}
                             onChange={(e) => setNewImgUrl(e.target.value)}
                         />
-                        <button type="button" onClick={handleAddPic}>Add Pic</button>
+                        <button onClick={handleAddPic}>Add Pic</button>
                     </div>
                 )}
+
+                {currNote.info.videoUrls && currNote.info.videoUrls.map((url, index) => (
+                    <div key={index}>
+                        <NoteVideo note={{ info: { videoUrl: url } }} />
+                        <button onClick={() => handleDeleteVideo(index)}>Delete</button>
+                    </div>
+                ))}
+
+                {showVideoUrlInput && (
+                    <div>
+                        <label htmlFor="newVideoUrl">Video URL</label>
+                        <input
+                            type="text"
+                            placeholder="Enter video URL"
+                            value={newVideoUrl}
+                            onChange={(e) => setNewVideoUrl(e.target.value)}
+                        />
+                        <button onClick={handleAddVideo}>Add Video</button>
+                    </div>
+                )}
+
 
             </form>
 
@@ -125,6 +184,7 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                 onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))}
                 onSave={onSave}
                 onAddPic={() => setShowImgUrlInput(true)}
+                onAddVideo={() => setShowVideoUrlInput(true)}
             />}
 
         </section>

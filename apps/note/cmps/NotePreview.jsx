@@ -19,12 +19,19 @@ export function NotePreview({ note, setIsAdd }) {
                 <NoteEdit note={note} setIsEdit={setIsEdit} setIsAdd={setIsAdd} />
             ) : (
                 <section className="note-preview" style={note.style}>
+
                     {note.info.title && <NoteTitle note={note} />}
+
                     {note.info.txt && <NoteTxt note={note} />}
+
                     {note.info.imgUrls && note.info.imgUrls.map((url, index) => (
                         <NoteImg key={index} note={{ info: { imgUrl: url } }} />
                     ))}
-                    {note.info.videoUrl && <NoteVideo note={note} />}
+
+                    {note.info.videoUrls && note.info.videoUrls.map((url, index) => (
+                        <NoteVideo key={index} note={{ info: { videoUrl: url } }} />
+                    ))}
+
                 </section>
             )}
         </section>
