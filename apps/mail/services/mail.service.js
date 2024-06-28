@@ -34,34 +34,57 @@ export const mailService = {
 
 function query(filterBy = {}) {
   return storageService.query(MAIL_KEY).then((mails) => {
-    if (filterBy.from) {
-      const fromFilter = filterBy.from
-        .replace(/[.@]/g, '')
+    const searchStr = filterBy.from
+      .toLowerCase()
+      .replace(/[.@]/g, '')
+      .replace('com', '')
+
+    mails = mails.filter((mail) => {
+      const fromMatch = mail.from
         .toLowerCase()
-        .replace('com', '')
-      mails = mails.filter((mail) => {
-        const normalizedFrom = mail.from
-          .replace(/[.@]/g, '')
-          .toLowerCase()
-          .replace('com', '')
-        return normalizedFrom.includes(fromFilter)
-      })
-    }
-    if (filterBy.subject) {
-      const regex = new RegExp(filterBy.subject, 'i')
-      mails = mails.filter((mail) => regex.test(mail.subject))
-    }
-    if (filterBy.body) {
-      const regex = new RegExp(filterBy.body, 'i')
-      mails = mails.filter((mail) => regex.test(mail.body))
-    }
-    console.log('mails: ', mails)
+        .replace(/[.@]/g, '')
+        .replace('.com', '')
+        .includes(searchStr)
+      const subjectMatch = mail.subject.toLowerCase().includes(searchStr)
+      const bodyMatch = mail.body.toLowerCase().includes(searchStr)
+      return fromMatch || subjectMatch || bodyMatch
+    })
 
     return mails
   })
 }
 
-function getDefaultFilter(filterBy = { from: 'momo', subject: '', body: '' }) {
+// function query(filterBy = {}) {
+//   console.log(filterBy.subject)
+//   return storageService.query(MAIL_KEY).then((mails) => {
+//     if (filterBy.from) {
+//       const fromFilter = filterBy.from
+//         .replace(/[.@]/g, '')
+//         .toLowerCase()
+//         .replace('com', '')
+//       mails = mails.filter((mail) => {
+//         const normalizedFrom = mail.from
+//           .replace(/[.@]/g, '')
+//           .toLowerCase()
+//           .replace('com', '')
+//         return normalizedFrom.includes(fromFilter)
+//       })
+//     }
+//     if (filterBy.subject) {
+//       const regex = new RegExp(filterBy.subject, 'i')
+//       mails = mails.filter((mail) => regex.test(mail.subject))
+//     }
+//     if (filterBy.body) {
+//       const regex = new RegExp(filterBy.body, 'i')
+//       mails = mails.filter((mail) => regex.test(mail.body))
+//     }
+//     console.log('mails: ', mails)
+
+//     return mails
+//   })
+// }
+
+function getDefaultFilter(filterBy = { from: '', subject: '', body: '' }) {
   console.log('getDefautlFilter: ', filterBy)
   return { from: filterBy.from, subject: filterBy.subject, body: filterBy.body }
 }
@@ -120,7 +143,7 @@ console.log(convertToDate(timestamp)) // Outputs: "July 28, 2021, 00:00 AM" (or 
 function _createMails() {
   let mails = utilService.loadFromStorage(MAIL_KEY)
   if (!mails || !mails.length) {
-    const mails = [
+    mails = [
       {
         id: 'e101',
         createdAt: 1551133930500,
@@ -314,100 +337,6 @@ function _createMails() {
     ]
 
     utilService.saveToStorage(MAIL_KEY, mails)
+    // console.log(mails[0].from)
   }
 }
-
-// const gEmails = [
-//   {
-//     id: 'e101',
-//     createdAt: 1551133930500,
-//     subject: 'Miss you!',
-//     body: 'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.',
-//     isRead: true,
-//     sentAt: 1551220330500,
-//     removedAt: null,
-//     from: 'momo@momo.com',
-//     to: 'user@appsus.com',
-//     labels: ['romantic', 'personal'],
-//     isStarred: false,
-//     txt: 'momo user',
-//     status: 'inbox',
-//   },
-//   {
-//     id: 'e102',
-//     createdAt: 1553725930500,
-//     subject: 'Catch soon',
-//     body: 'Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-//     isRead: true,
-//     sentAt: 1553812330500,
-//     removedAt: null,
-//     from: 'momo@momo.com',
-//     to: 'user@appsus.com',
-//     labels: ['important', 'business'],
-//     isStarred: false,
-//     txt: 'momo user',
-//     status: 'inbox',
-//   },
-//   {
-//     id: 'e103',
-//     createdAt: 1556317930500,
-//     subject: 'Time zone',
-//     body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-//     isRead: false,
-//     sentAt: 1556404330500,
-//     removedAt: null,
-//     from: 'user@appsus.com',
-//     to: 'newuser@appsus.com',
-//     labels: ['business', 'personal'],
-//     isStarred: false,
-//     txt: 'user newuser',
-//     status: 'sent',
-//   },
-//   {
-//     id: 'e104',
-//     createdAt: 1558909930500,
-//     subject: 'Project update',
-//     body: 'Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum.',
-//     isRead: true,
-//     sentAt: 1558996330500,
-//     removedAt: null,
-//     from: 'user@appsus.com',
-//     to: 'anotheruser@appsus.com',
-//     labels: ['romantic', 'business'],
-//     isStarred: false,
-//     txt: 'user anotheruser',
-//     status: 'sent',
-//   },
-//   {
-//     id: 'e105',
-//     createdAt: 1561501930500,
-//     subject: 'Hello there',
-//     body: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.',
-//     isRead: false,
-//     sentAt: 1561588330500,
-//     removedAt: null,
-//     from: 'user@appsus.com',
-//     to: 'differentuser@appsus.com',
-//     labels: ['important', 'personal'],
-//     isStarred: true,
-//     txt: 'user differentuser',
-//     status: 'draft',
-//   },
-// ]
-
-// const gEmail = {
-//   id: 'e101',
-//   createdAt: 1551133930500,
-//   subject: 'Miss you!',
-//   body: 'Would love to catch up sometimes',
-//   isRead: false,
-//   sentAt: 1551133930594,
-//   removedAt: null,
-//   from: 'momo@momo.com',
-//   to: 'user@appsus.com',
-//   lables: ['important', 'romantic'],
-//   isStared: true,
-//   sRead: true,
-//   txt: 'puki',
-//   status: 'inbox/sent/trash/draft',
-// }

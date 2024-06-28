@@ -1,14 +1,58 @@
-/* .book-filter {
-  background-color: var(--clr2bg);
-  padding-inline: 1em;
+.mail-search {
+  position: relative;
+  max-width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: #eaf1fb;
+  border-radius: 24px;
+  padding: 0 10px;
 }
 
-.book-filter form {
-  display: grid;
-  grid-template-columns: 100px 200px;
-  gap: 0.5em;
+.mail-search input[type='search'] {
+  flex-grow: 1;
+  padding: 10px 0; /* Adjusted padding to fit the buttons inside */
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 27px;
+  text-align: start;
+  letter-spacing: normal;
+  color: #000000;
+  background-color: transparent; /* Make the background transparent to show the parent background */
+  border: none;
+  border-radius: 24px;
+  box-shadow: none;
+  outline: none;
 }
 
-.book-filter form button {
-  margin-inline: 0;
-} */
+.btn-search,
+.btn-filteroptions {
+  width: 2.4em; /* 75% of 2em (32px) height */
+  height: 2.4em; /* 75% of 2em (32px) height */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.btn-search {
+  background-image: url('../../../../../apps/mail/assets/icons/magnifier.svg');
+}
+
+.btn-filteroptions {
+  background-image: url('../../../../../apps/mail/assets/icons/filteroptions.svg');
+}
+
+.btn-search:hover,
+.btn-filteroptions:hover {
+  background-color: #eaf1fb;
+  border-radius: 50%;
+  fill: #444746;
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 13.3333px;
+  line-height: 0;
+  text-align: center;
+  letter-spacing: normal;
+}

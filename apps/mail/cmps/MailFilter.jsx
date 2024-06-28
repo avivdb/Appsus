@@ -1,62 +1,95 @@
-const { useState, useEffect } = React
-
 import { mailService } from '../services/mail.service.js'
 
-export function mailFilter({ onSetFilter, filterBy }) {
-  const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+const { useState, useEffect } = React
 
-  useEffect(() => {
-    onSetFilter(filterByToEdit)
-  }, [filterByToEdit])
+export function MailFilter({ filterBy, onSetFilter }) {
+  const [searchText, setSearchText] = useState('')
 
   function handleChange(ev) {
-    const field = ev.target.name
-    const value = ev.target.value
-    setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+    setSearchText(ev.target.value)
   }
 
-  function onFilter(ev) {
+  function onSubmitSearch(ev) {
     ev.preventDefault()
-    onSetFilter(filterByToEdit)
+    onSetFilter({ from: searchText, subject: searchText, body: searchText })
   }
-
-  const { from, body } = filterByToEdit
-
   return (
-    <section className='filter-container'>
-      <div className='filter-inside-container'>
-        <h2 className='filter-header'>Filter mails:</h2>
-        <form className='mails-filter' onSubmit={onFilter}>
-          <div className='filter-section'>
-            <label htmlFor='byFrom'>from:</label>
-            <input
-              type='text'
-              id='byFrom'
-              name='from'
-              value={from}
-              onChange={handleChange}
-              className='input'
-              placeholder='Search by from...'
-            />
-          </div>
-
-          <div className='filter-section'>
-            <label htmlFor='byBody'>body:</label>
-            <input
-              type='number'
-              id='body'
-              name='body'
-              value={body}
-              onChange={handleChange}
-              className='input'
-              placeholder='Search by body'
-            />
-          </div>
+    <React.Fragment>
+      <h2>Filter mails</h2>
+      <section className='mail-filter'>
+        <form className='mail-search' onSubmit={onSubmitSearch}>
+          <button className='btn-search' type='submit'></button>
+          <input
+            type='search'
+            id='byFrom'
+            value={searchText}
+            onChange={handleChange}
+            className='input'
+            placeholder='Search mail'
+          />
+          <button className='btn-filteroptions' type='button'></button>
         </form>
-      </div>
-    </section>
+      </section>
+    </React.Fragment>
   )
 }
+// export function mailFilter({ onSetFilter, filterBy }) {
+//   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+
+//   useEffect(() => {
+//     onSetFilter(filterByToEdit)
+//   }, [filterByToEdit])
+
+//   function handleChange(ev) {
+//     const field = ev.target.name
+//     const value = ev.target.value
+//     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+//   }
+
+//   function onFilter(ev) {
+//     ev.preventDefault()
+//     onSetFilter(filterByToEdit)
+//   }
+
+//   const { from, body } = filterByToEdit
+
+//   return (
+//     <React.Fragment>
+//       <section className='filter-container'>
+//         <div className='filter-inside-container'>
+//           <h2 className='filter-header'>Filter mails:</h2>
+//           <form className='mails-filter' onSubmit={onFilter}>
+//             <div className='filter-section'>
+//               <label htmlFor='byFrom'>from:</label>
+//               <input
+//                 type='text'
+//                 id='byFrom'
+//                 name='from'
+//                 value={from}
+//                 onChange={handleChange}
+//                 className='input'
+//                 placeholder='Search by from...'
+//               />
+//             </div>
+
+//             <div className='filter-section'>
+//               <label htmlFor='byBody'>body:</label>
+//               <input
+//                 type='number'
+//                 id='body'
+//                 name='body'
+//                 value={body}
+//                 onChange={handleChange}
+//                 className='input'
+//                 placeholder='Search by body'
+//               />
+//             </div>
+//           </form>
+//         </div>
+//       </section>
+//     </React.Fragment>
+//   )
+// }
 
 // import { mailService } from '../services/mail.service.js'
 // import { utilService } from '../../../services/util.service.js'

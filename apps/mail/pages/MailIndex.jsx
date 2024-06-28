@@ -11,8 +11,9 @@ const { useState, useEffect } = React
 export function MailIndex() {
   const [mails, setMails] = useState(null)
   const [isCompose, setIsCompose] = useState(false)
+  // const [filterBy, setFilterBy] = useState({})
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-  const [selectedMailId, setSelectedMailId] = useState(null)
+  const [selectedMailId, setSelectedMailId] = useState(null) // Car Details
 
   useEffect(() => {
     loadMails()
@@ -20,7 +21,7 @@ export function MailIndex() {
 
   function loadMails() {
     mailService
-      .query()
+      .query(filterBy)
       .then((mails) => setMails(mails))
       .catch((err) => console.log('err ', err))
   }
@@ -67,6 +68,10 @@ export function MailIndex() {
   // const { from, subject, body } = filterBy
   if (!mails) return <div>Loading...</div>
 
+  function onSelectMailId(mailId) {
+    setSelectedMailId(mailId)
+  }
+
   return (
     <section className='mail-index'>
       {selectedMailId ? (
@@ -77,6 +82,7 @@ export function MailIndex() {
           <button className='compose-btn' onClick={() => setIsCompose(true)}>
             Compose
           </button>
+          <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
           {/* <MailFilter
             filterBy={filterBy}
             onFilterBy={onSetFilterBy}
