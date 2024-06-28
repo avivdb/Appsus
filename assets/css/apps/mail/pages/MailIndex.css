@@ -8,3 +8,57 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+/* button.compose-btn {
+  background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
+  width: 56px;
+  height: 56px;
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 0px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: normal;
+  background-color: #c2e7ff;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+} */
+
+button.compose-btn {
+  background-image: none;
+  width: 118px;
+  height: 56px;
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: normal;
+  color: #001d35; /* Text color */
+  background-color: #c2e7ff;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px; /* Adjust padding to position text nicely */
+}
+
+button.compose-btn::before {
+  content: '';
+  display: inline-block;
+  background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
+  width: 24px;
+  height: 24px;
+  margin-right: 8px; /* Space between the icon and the text */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

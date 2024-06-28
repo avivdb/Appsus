@@ -1,6 +1,7 @@
 const { Link } = ReactRouterDOM
 
 import { MailPreview } from '../cmps/MailPreview.jsx'
+import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailList } from '../cmps/MailList.jsx'
 import { MailDetails } from './MailDetails.jsx'
 import { MailCompose } from './MailCompose.jsx'
@@ -10,17 +11,26 @@ const { useState, useEffect } = React
 export function MailIndex() {
   const [mails, setMails] = useState(null)
   const [isCompose, setIsCompose] = useState(false)
+  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
   const [selectedMailId, setSelectedMailId] = useState(null)
 
   useEffect(() => {
     loadMails()
-  }, [])
+  }, [filterBy])
 
   function loadMails() {
     mailService
       .query()
       .then((mails) => setMails(mails))
       .catch((err) => console.log('err ', err))
+  }
+
+  function onSetFilter(filterBy) {
+    setFilterBy({ ...filterBy })
+  }
+
+  function onSetFilterBy(newFilter) {
+    setFilterBy((prevFilter) => ({ ...prevFilter, ...newFilter }))
   }
 
   function handleMailClick(mailId) {
@@ -54,7 +64,7 @@ export function MailIndex() {
       setMails((prevMails) => [savedMail, ...prevMails])
     })
   }
-
+  // const { from, subject, body } = filterBy
   if (!mails) return <div>Loading...</div>
 
   return (
@@ -64,9 +74,14 @@ export function MailIndex() {
       ) : (
         <React.Fragment>
           <div>mail app</div>
-          <button className='add-btn' onClick={() => setIsCompose(true)}>
-            Add Book
+          <button className='compose-btn' onClick={() => setIsCompose(true)}>
+            Compose
           </button>
+          {/* <MailFilter
+            filterBy={filterBy}
+            onFilterBy={onSetFilterBy}
+            onSetFilter={onSetFilter}
+          /> */}
           {isCompose && (
             <MailCompose
               mails={mails}
@@ -87,7 +102,7 @@ export function MailIndex() {
     </section>
   )
 }
-//   {/* ADD BOOK */}
+//   {/* Compose Mail */}
 //   {isEdit && (
 //     <BookEdit onAddBook={onAddBook} onCancelEdit={() => setIsEdit(false)} />
 // )}

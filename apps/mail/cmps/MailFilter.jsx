@@ -11,8 +11,7 @@ export function mailFilter({ onSetFilter, filterBy }) {
 
   function handleChange(ev) {
     const field = ev.target.name
-    const value =
-      ev.target.type === 'number' ? +ev.target.value : ev.target.value
+    const value = ev.target.value
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 

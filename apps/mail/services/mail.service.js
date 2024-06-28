@@ -4,14 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
-var gFilterBy = { title: '', subject: 0, body: '' }
-_createMails()
-
-const loggedinUser = {
-  email: 'user@appsus.com',
-  fullname: 'Mahatma Appsus',
-}
-
+// var gFilterBy = { title: '', subject: 0, body: '' }
 // const filterBy = {
 //   status: 'inbox/sent/trash/draft',
 //   txt: 'puki', // no need to support complex text search
@@ -19,6 +12,12 @@ const loggedinUser = {
 //   isStared: true, // (optional property, if missing: show all)
 //   lables: ['important', 'romantic'], // has any of the labels
 // }
+_createMails()
+
+const loggedinUser = {
+  email: 'user@appsus.com',
+  fullname: 'Mahatma Appsus',
+}
 
 export const mailService = {
   query,
@@ -28,9 +27,9 @@ export const mailService = {
   save,
   getEmptyMail: getEmptyMail,
   getDefaultFilter,
+  // getFilterBy,
+  // setFilterBy,
   //   getNextCarId: getNextBookId,
-  //   getFilterBy,
-  //   setFilterBy,
 }
 
 function query(filterBy = {}) {
@@ -62,7 +61,8 @@ function query(filterBy = {}) {
   })
 }
 
-function getDefaultFilter(filterBy = { from: '', subject: '', body: '' }) {
+function getDefaultFilter(filterBy = { from: 'momo', subject: '', body: '' }) {
+  console.log('getDefautlFilter: ', filterBy)
   return { from: filterBy.from, subject: filterBy.subject, body: filterBy.body }
 }
 
