@@ -3,6 +3,8 @@ const { Link } = ReactRouterDOM
 import { MailPreview } from '../cmps/MailPreview.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailList } from '../cmps/MailList.jsx'
+import { MailAside } from '../cmps/MailAside.jsx'
+import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailDetails } from './MailDetails.jsx'
 import { MailCompose } from './MailCompose.jsx'
 import { mailService } from '../services/mail.service.js'
@@ -78,11 +80,13 @@ export function MailIndex() {
         <MailDetails mailId={selectedMailId} onBack={handleBackClick} />
       ) : (
         <React.Fragment>
-          <div>mail app</div>
+          <MailHeader filterBy={filterBy} onSetFilter={onSetFilter} />
+          <MailAside />
+
           <button className='compose-btn' onClick={() => setIsCompose(true)}>
             Compose
           </button>
-          <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+
           {/* <MailFilter
             filterBy={filterBy}
             onFilterBy={onSetFilterBy}
@@ -103,6 +107,9 @@ export function MailIndex() {
               onRemoveMail={onRemoveMail}
             />
           )}
+          <section className='add-ons'>
+            <h1>Add-ons</h1>
+          </section>
         </React.Fragment>
       )}
     </section>
