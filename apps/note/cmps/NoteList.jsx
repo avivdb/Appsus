@@ -3,17 +3,17 @@ import { NotePreview } from "./NotePreview.jsx"
 const { Link } = ReactRouterDOM
 
 
-export function NoteList({ notes, removeNote }) {
+export function NoteList({ notes, removeNote, setIsAdd, setIsEdit }) {
 
     return (
-        <section className="note-list">
-            <ul>
-                {notes.map(note =>
-                    <li key={note.id} >
-                        <NotePreview note={note} removeNote={removeNote} />
-                    </li>
-                )}
-            </ul>
-        </section>
+
+        <ul className="note-list">
+            {notes.map(note =>
+                <li key={note.id} >
+                    <NotePreview note={note} removeNote={removeNote} setIsEdit={setIsEdit} setIsAdd={setIsAdd} />
+                </li>
+            )}
+        </ul>
+
     )
 }

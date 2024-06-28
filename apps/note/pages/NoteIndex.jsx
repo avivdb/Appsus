@@ -15,6 +15,7 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(notesService.getDefaultFilter())
     const [isAdd, setIsAdd] = useState(false)
+    // const [isEdit, setIsEdit] = useState(false);
     // console.log('filterBy', filterBy)
 
     useEffect(() => {
@@ -51,7 +52,7 @@ export function NoteIndex() {
 
                 <AddNote setIsAdd={setIsAdd} />
             )}
-            <NoteList notes={notes} removeNote={removeNote} />
+            <NoteList notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} />
         </section>
     )
 }

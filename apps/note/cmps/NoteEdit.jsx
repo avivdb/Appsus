@@ -11,6 +11,8 @@ const { useState, useEffect } = React
 export function NoteEdit({ note, setIsAdd, setIsEdit }) {
 
     const [currNote, setCurrNote] = useState(note || notesService.getEmptyNote())
+    const [newImgUrl, setNewImgUrl] = useState('');
+    const [showImgUrlInput, setShowImgUrlInput] = useState(false);
     const params = useParams()
     const navigate = useNavigate()
 
@@ -22,14 +24,12 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
     }, [currNote, params.noteId])
 
     function onSave(ev) {
-        // console.log(ev);
-        console.log(setIsAdd === setIsEdit)
         ev.preventDefault()
         notesService.save(currNote)
             .then(() => {
                 showSuccessMsg('Note has successfully saved!')
-                setIsEdit(false)
                 setIsAdd(false)
+                setIsEdit(false)
 
             })
             .catch(() => showErrorMsg(`couldn't save note`))
@@ -48,11 +48,23 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
     function handleChangeInfo({ target }) {
         const { type, name: prop } = target
         let { value } = target
-
+        function addPic() {
+            setPicUrl
+        }
         setCurrNote(prevNote => ({
             ...prevNote,
             info: { ...prevNote.info, [prop]: value }
         }))
+    }
+
+    function handleAddPic() {
+        const updatedImgUrls = currNote.info.imgUrls ? [...currNote.info.imgUrls, newImgUrl] : [newImgUrl];
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, imgUrls: updatedImgUrls }
+        }));
+        setNewImgUrl('');  // Clear the input after adding
+        setShowImgUrlInput(false);  // Hide the input after adding
     }
 
     const {
@@ -93,9 +105,27 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                     type="text"
                     name='txt' />
 
+                {showImgUrlInput && (
+                    <div>
+                        <label htmlFor="newImgUrl">Image URL</label>
+                        <input
+                            type="text"
+                            placeholder="Enter image URL"
+                            value={newImgUrl}
+                            onChange={(e) => setNewImgUrl(e.target.value)}
+                        />
+                        <button type="button" onClick={handleAddPic}>Add Pic</button>
+                    </div>
+                )}
+
             </form>
 
-            {<NoteNav note={currNote} onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))} onSave={onSave} />}
+            {<NoteNav
+                note={currNote}
+                onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))}
+                onSave={onSave}
+                onAddPic={() => setShowImgUrlInput(true)}
+            />}
 
         </section>
     )
