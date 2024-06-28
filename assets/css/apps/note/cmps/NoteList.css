@@ -1,9 +1,9 @@
  /* note list */
- .note-list ul {
+ .note-list {
     display: grid;
     grid-template-columns: repeat(auto-fill,300px);
     grid-auto-rows: minmax(100px,fit-content);
-    /* grid-auto-flow: dense; */
+    grid-auto-flow: dense;
     justify-content: center;
     gap: 1em;
     list-style: none;
