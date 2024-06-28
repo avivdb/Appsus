@@ -4,6 +4,7 @@ import { NoteVideo } from "./NoteVideo.jsx";
 import { NoteNav } from "./NoteNav.jsx";
 import { NoteTitle } from "./NoteTitle.jsx";
 import { NoteEdit } from "./NoteEdit.jsx";
+import { NoteToDo } from "./NoteToDo.jsx";
 const { useState } = React
 
 export function NotePreview({ note, setIsAdd }) {
@@ -32,6 +33,7 @@ export function NotePreview({ note, setIsAdd }) {
                         <NoteVideo key={index} note={{ info: { videoUrl: url } }} />
                     ))}
 
+                    {note.info.todo && <NoteToDo note={note} />}
                 </section>
             )}
         </section>

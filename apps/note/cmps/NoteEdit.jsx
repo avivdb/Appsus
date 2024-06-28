@@ -17,6 +17,8 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
     const [showImgUrlInput, setShowImgUrlInput] = useState(false)
     const [newVideoUrl, setNewVideoUrl] = useState('')
     const [showVideoUrlInput, setShowVideoUrlInput] = useState(false)
+    const [newTodo, setNewTodo] = useState('')
+    const [showTodoInput, setShowTodoInput] = useState(false)
 
     const params = useParams()
     const navigate = useNavigate()
@@ -98,6 +100,25 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
         }));
     }
 
+    function handleAddTodo() {
+        const todosToAdd = newTodo.split(',').map(todo => todo.trim()).filter(todo => todo !== '');
+        const updatedTodo = currNote.info.todo ? [...currNote.info.todo, ...todosToAdd] : todosToAdd;
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, todo: updatedTodo }
+        }));
+        setNewTodo('');  // Clear the input after adding
+        setShowTodoInput(false);  // Hide the input after adding
+    }
+
+    function handleDeleteTodo(index) {
+        const updatedTodo = currNote.info.todo.filter((_, i) => i !== index);
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, todo: updatedTodo }
+        }));
+    }
+
     const {
         id,
         createdAt,
@@ -176,6 +197,27 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                     </div>
                 )}
 
+                {todo.map((task, index) => (
+                    <div key={index}>
+                        <span>{task}</span>
+                        <button onClick={() => handleDeleteTodo(index)}>Delete</button>
+                    </div>
+                ))}
+
+                {showTodoInput && (
+                    <div>
+                        <label htmlFor="newTodo">New Todo</label>
+                        <input
+                            type="text"
+                            placeholder="Enter todo"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                        />
+                        <button onClick={handleAddTodo}>Add Todo</button>
+                    </div>
+                )}
+
+
 
             </form>
 
@@ -185,6 +227,7 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                 onSave={onSave}
                 onAddPic={() => setShowImgUrlInput(true)}
                 onAddVideo={() => setShowVideoUrlInput(true)}
+                onAddTodo={() => setShowTodoInput(true)}
             />}
 
         </section>
