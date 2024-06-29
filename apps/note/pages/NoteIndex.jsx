@@ -1,3 +1,4 @@
+
 import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { notesService } from "../services/note.service.js"
@@ -5,16 +6,21 @@ import { showErrorMsg } from '../../../services/event-bus.service.js'
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { AddNote } from "../cmps/AddNote.jsx"
-
+import { NoteGrid } from "../cmps/NoteGrid.jsx"
+// import './'
 const { useEffect, useState } = React
-
-
+const { useNavigate } = ReactRouter
 
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(notesService.getDefaultFilter())
     const [isAdd, setIsAdd] = useState(false)
+    const [isEdit, setIsEdit] = useState(false)
+    const [currNote, setCurrNote] = useState(null)
+    const navigate = useNavigate()
+
+
     // const [isEdit, setIsEdit] = useState(false);
     // console.log('filterBy', filterBy)
 
@@ -34,25 +40,40 @@ export function NoteIndex() {
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => noteId !== note.id))
                 showSuccessMsg('Note has been successfully removed!')
+                setIsEdit(false)
+                navigate('/note')
             })
             .catch(() => {
                 showErrorMsg(`couldn't remove note`)
-                navigate('/note')
             })
     }
+    const startEditing = (note) => {
+        setCurrNote(note);
+        setIsEdit(true);
+        setIsAdd(false);
+    };
 
+    const stopEditing = () => {
+        setCurrNote(null);
+        setIsEdit(false);
+    };
 
     return (
-        <section className="note-index">
+        <section className="note-index main-layout">
             <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
 
             {isAdd ? (
-                <NoteEdit note={notesService.getEmptyNote()} setIsAdd={setIsAdd} />
+                <NoteEdit className="note-edit addnote" note={notesService.getEmptyNote()} setIsAdd={setIsAdd} setIsEdit={setIsEdit} />
             ) : (
 
                 <AddNote setIsAdd={setIsAdd} />
             )}
-            <NoteList notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} />
+            {/* <NoteList notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} /> */}
+            {isEdit ? (
+                <NoteEdit note={currNote} removeNote={removeNote} setIsEdit={setIsEdit} setIsAdd={setIsAdd} className="note-edit-preview" style={currNote.style} />
+            ) : (
+                <NoteGrid notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} startEditing={startEditing} />
+            )}
         </section>
     )
 }

@@ -10,7 +10,7 @@ const { useParams, useNavigate } = ReactRouter
 
 const { useState, useEffect } = React
 
-export function NoteEdit({ note, setIsAdd, setIsEdit }) {
+export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, handleClose, style }) {
 
     const [currNote, setCurrNote] = useState(note || notesService.getEmptyNote())
     const [newImgUrl, setNewImgUrl] = useState('')
@@ -24,6 +24,7 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
     const navigate = useNavigate()
 
     useEffect(() => {
+        // console.log('setIsEdit', setIsEdit)
         if (currNote) return
         if (params.noteId) {
             notesService.get(params.noteId).then(setCurrNote)
@@ -37,7 +38,7 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                 showSuccessMsg('Note has successfully saved!')
                 setIsAdd(false)
                 setIsEdit(false)
-
+                navigate('/note')
             })
             .catch(() => showErrorMsg(`couldn't save note`))
             .finally(() => navigate('/note'))
@@ -118,7 +119,9 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
             info: { ...prevNote.info, todo: updatedTodo }
         }));
     }
-
+    // function handleCloseBtn() {
+    //     setIsEdit(false)
+    // }
     const {
         id,
         createdAt,
@@ -136,7 +139,7 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
     } = currNote
 
     return (
-        <section className='note-edit'>
+        <section className={className} style={currNote.style}>
             <form onSubmit={onSave}>
 
                 <label htmlFor="title"></label>
@@ -146,88 +149,94 @@ export function NoteEdit({ note, setIsAdd, setIsEdit }) {
                     placeholder="Title"
                     id='title'
                     type="text"
-                    name='title' />
+                    name='title'
+                    className="title" />
 
                 <label htmlFor="txt"></label>
-                <input
+                <textarea
                     onChange={handleChangeInfo}
                     value={currNote.info.txt}
                     placeholder="Take a note..."
                     id='txt'
                     type="text"
-                    name='txt' />
+                    name='txt'
+                    className="txtarea" />
 
                 {currNote.info.imgUrls && currNote.info.imgUrls.map((url, index) => (
                     <div key={index}>
                         <NoteImg note={{ info: { imgUrl: url } }} />
-                        <button onClick={() => handleDeleteImg(index)}>Delete</button>
+                        <button onClick={() => handleDeleteImg(index)}>x</button>
                     </div>
                 ))}
 
                 {showImgUrlInput && (
                     <div>
-                        <label htmlFor="newImgUrl">Image URL</label>
+                        <label htmlFor="newImgUrl"></label>
                         <input
                             type="text"
                             placeholder="Enter image URL"
                             value={newImgUrl}
                             onChange={(e) => setNewImgUrl(e.target.value)}
                         />
-                        <button onClick={handleAddPic}>Add Pic</button>
+                        <button onClick={handleAddPic}>+</button>
                     </div>
                 )}
 
                 {currNote.info.videoUrls && currNote.info.videoUrls.map((url, index) => (
                     <div key={index}>
                         <NoteVideo note={{ info: { videoUrl: url } }} />
-                        <button onClick={() => handleDeleteVideo(index)}>Delete</button>
+                        <button onClick={() => handleDeleteVideo(index)}>x</button>
                     </div>
                 ))}
 
                 {showVideoUrlInput && (
                     <div>
-                        <label htmlFor="newVideoUrl">Video URL</label>
+                        <label htmlFor="newVideoUrl"></label>
                         <input
                             type="text"
                             placeholder="Enter video URL"
                             value={newVideoUrl}
                             onChange={(e) => setNewVideoUrl(e.target.value)}
                         />
-                        <button onClick={handleAddVideo}>Add Video</button>
+                        <button onClick={handleAddVideo}>+</button>
                     </div>
                 )}
 
                 {todo.map((task, index) => (
                     <div key={index}>
                         <span>{task}</span>
-                        <button onClick={() => handleDeleteTodo(index)}>Delete</button>
+                        <button onClick={() => handleDeleteTodo(index)}>x</button>
                     </div>
                 ))}
 
                 {showTodoInput && (
                     <div>
-                        <label htmlFor="newTodo">New Todo</label>
+                        <label htmlFor="newTodo"></label>
                         <input
                             type="text"
                             placeholder="Enter todo"
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
                         />
-                        <button onClick={handleAddTodo}>Add Todo</button>
+                        <button onClick={handleAddTodo}>+</button>
                     </div>
                 )}
-
 
 
             </form>
 
             {<NoteNav
                 note={currNote}
-                onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))}
+                // onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))}
+                onRemove={removeNote}
                 onSave={onSave}
                 onAddPic={() => setShowImgUrlInput(true)}
                 onAddVideo={() => setShowVideoUrlInput(true)}
                 onAddTodo={() => setShowTodoInput(true)}
+                onClose={() => {
+                    console.log('setIsEdit', setIsEdit)
+                    setIsEdit(false)
+                }}
             />}
 
         </section>

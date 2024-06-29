@@ -64,16 +64,16 @@ function query(filterBy = {}) {
 
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
-                notes = notes.filter(note => regExp.test(note.info.title))
+                notes = notes.filter(note => regExp.test(note.info.title) || regExp.test(note.info.txt));
             }
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => regExp.test(note.info.txt))
-            }
-            if (filterBy.type) {
+            // if (filterBy.txt) {
+            //     const regExp = new RegExp(filterBy.txt, 'i')
+            //     notes = notes.filter(note => regExp.test(note.info.txt))
+            // }
+            // if (filterBy.type) {
 
-                notes = notes.filter(note => note.type === filterBy.type)
-            }
+            //     notes = notes.filter(note => note.type === filterBy.type)
+            // }
             return notes
         })
 }
@@ -109,7 +109,7 @@ function getEmptyNote() {
             todo: [],
         },
         style: {
-            backgroundColor: utilService.getRandomColor(),
+            backgroundColor: '',
         }
     }
 }

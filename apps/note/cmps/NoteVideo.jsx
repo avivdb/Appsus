@@ -1,7 +1,7 @@
 export function NoteVideo({ note }) {
     return (
         <section className="note-video">
-            <iframe src={note.info.videoUrl} width="140px" frameBorder="0"></iframe>
+            <iframe src={note.info.videoUrl} frameBorder="0" allowFullScreen loop="1"></iframe>
         </section>
     )
 }

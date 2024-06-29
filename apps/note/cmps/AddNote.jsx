@@ -6,7 +6,7 @@ export function AddNote({ setIsAdd }) {
         <section className="add-note" onClick={() => setIsAdd(true)}>
             <form>
                 <label htmlFor="add-note-txt"></label>
-                <input type="text" placeholder="take note.." name="add-note-txt" id="add-note-txt" />
+                <input type="text" placeholder="Take a note..." name="add-note-txt" id="add-note-txt" />
             </form>
 
         </section>
