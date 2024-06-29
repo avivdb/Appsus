@@ -1,5 +1,5 @@
 .mail-preview {
-  display: contents; /* Use contents to make the children use the grid from the parent */
+  display: contents;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid color var(--mail-list-border-color);
@@ -34,7 +34,6 @@ button.drafts,
 button.mark-email-unread {
   width: 20px;
   height: 20px;
-  background-color: #e8effd;
   border: none;
   cursor: pointer;
   background-size: contain;
@@ -44,14 +43,14 @@ button.mark-email-unread {
 .mail-select-options {
   display: flex;
   gap: 10px;
-  justify-content: space-between; /* Added to space out elements */
+  justify-content: space-between;
   margin-right: 10px;
 }
 
 .mail-select-options button {
   width: 20px;
   height: 20px;
-  background: none;
+
   border: none;
   cursor: pointer;
   background-size: contain;

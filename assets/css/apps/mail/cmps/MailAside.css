@@ -12,7 +12,7 @@ button.compose-btn {
   line-height: 32px;
   text-align: center;
   letter-spacing: normal;
-  color: #001d35; /* Text color */
+  color: #001d35;
   background-color: #c2e7ff;
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0) 0px 1px 2px 0px, rgba(0, 0, 0, 0) 0px 1px 3px 1px;
@@ -32,7 +32,7 @@ button.compose-btn::before {
   background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
   width: 24px;
   height: 24px;
-  margin-right: 8px; /* Space between the icon and the text */
+  margin-right: 8px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
@@ -48,20 +48,19 @@ button.compose-btn::before {
   margin: 0;
 }
 
-/* General Button Styling */
 .mail-aside-btn {
-  display: flex; /* Use flexbox to align items horizontally */
-  align-items: center; /* Center items vertically */
-  padding: 20px 20px; /* Adjust padding for better alignment */
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
   border: none;
   background: none;
   cursor: pointer;
   color: #202124;
   text-align: left;
-  width: 100%; /* Make buttons full width */
-  border-radius: 0 24px 24px 0; /* Creates the pill shape on the right side */
-  margin: 0; /* Remove margin for better alignment */
-  position: relative; /* Position relative for child elements */
+  width: 100%;
+  border-radius: 0 24px 24px 0;
+  margin: 0;
+  position: relative;
 }
 
 .mail-aside-btn span {
@@ -77,7 +76,7 @@ button.compose-btn::before {
   margin-right: 16px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left center; /* Align all icons to the same position */
+  background-position: left center;
 }
 
 .mail-aside-btn:hover {
@@ -124,7 +123,7 @@ button.compose-btn::before {
   background-position: left 10px center;
 }
 
-/* button.compose-btn {
+button.compose-btn small {
   background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
   width: 56px;
   height: 56px;
@@ -142,4 +141,4 @@ button.compose-btn::before {
   border: none;
   cursor: pointer;
   outline: none;
-} */
+}

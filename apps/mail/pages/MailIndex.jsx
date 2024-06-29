@@ -15,7 +15,7 @@ export function MailIndex() {
   const [isCompose, setIsCompose] = useState(false)
 
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-  const [selectedMailId, setSelectedMailId] = useState(null) // Car Details
+  const [selectedMailId, setSelectedMailId] = useState(null)
 
   useEffect(() => {
     loadMails()
@@ -50,7 +50,7 @@ export function MailIndex() {
       .then(() => {
         console.log('mail removed')
         console.log(mailId)
-        // loadBooks()
+
         setMails((mails) => mails.filter((mail) => mail.id !== mailId))
         // showSuccessMsg('Book removed successfully')
       })
@@ -67,14 +67,11 @@ export function MailIndex() {
       setMails((prevMails) => [savedMail, ...prevMails])
     })
   }
-  // const { from, subject, body } = filterBy
 
-  // Function to toggle compose mode on
   function onCompose() {
     setIsCompose(true)
   }
 
-  // Function to toggle compose mode off
   function onCancelCompose() {
     setIsCompose(false)
   }
@@ -103,7 +100,7 @@ export function MailIndex() {
             <MailCompose
               mails={mails}
               onAddMail={onAddMail}
-              onCancelEdit={onCancelCompose} // Uses onCancelCompose to toggle compose mode off
+              onCancelEdit={onCancelCompose}
             />
           ) : (
             <MailList

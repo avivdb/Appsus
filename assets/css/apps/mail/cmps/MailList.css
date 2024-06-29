@@ -1,5 +1,5 @@
 .mails-list {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 0;
   margin: 0;
   font-size: 16px;
@@ -7,8 +7,8 @@
 }
 
 .mails-list li {
-  display: grid; /* Changed from flex to grid */
-  grid-template-columns: 1fr 2fr 4fr 1fr; /* Four columns with respective sizing */
+  display: grid;
+  grid-template-columns: 1fr 2fr 4fr 1fr;
   align-items: center;
   align-content: center;
   padding: 10px;
@@ -30,17 +30,23 @@
 .mails-list li:hover {
   background: #e8effd;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  min-height: 2.875em; /* Increase min-height by 15% */
+  min-height: 2.875em;
 }
 
 .list-options {
   display: flex;
   gap: 10px;
-  justify-content: space-between; /* Added to space out elements */
+  justify-content: space-between;
 
   background-color: var(--mail-main-white);
   border-radius: 20px 20px 0 0;
   height: 50px;
+}
+
+.list-options button {
+  margin-inline: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .mail-from {
@@ -54,7 +60,7 @@
 .sentAt {
   color: gray;
   cursor: pointer;
-  text-align: right; /* Align to the end */
+  text-align: right;
 }
 
 .mail-actions {
@@ -71,15 +77,3 @@
 .mails-list li:hover .sentAt {
   visibility: hidden;
 }
-
-/* color rgb(32, 33, 36)
-display block
-flex-grow 1
-font-family "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif
-height 755px
-
-height 755px
-overflow-x hidden
-overflow-y hidden
-unicode-bidi isolate
-width 1041.65px */

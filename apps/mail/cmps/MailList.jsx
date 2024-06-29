@@ -8,13 +8,13 @@ export function MailList({ mails, onMailClick, onRemoveMail }) {
     <React.Fragment>
       <div className='main-mail-list'>
         <section className='list-options'>
-          <button type='button'>cb</button>
-          <button type='button'>cbdrop</button>
-          <button type='button'>ref</button>
-          <button type='button'>more</button>
-          <button type='button'>pgnum</button>
-          <button type='button'>pgbck</button>
-          <button type='button'>pgfwd</button>
+          <button>cb</button>
+          <button>cbdrop</button>
+          <button>ref</button>
+          <button>more</button>
+          <button>pgnum</button>
+          <button>pgbck</button>
+          <button>pgfwd</button>
         </section>
         <ul className='mails-list'>
           {mails.map((mail) => (

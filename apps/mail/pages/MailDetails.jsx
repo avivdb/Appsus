@@ -17,7 +17,7 @@ export function MailDetails({ mailId, onBack }) {
   if (!mail) return <div>Loading...</div>
 
   return (
-    <section className='mail-details'>
+    <div className='mail-details'>
       <button onClick={onBack}>Back</button>
       <h2>{mail.subject}</h2>
       <h3>
@@ -30,6 +30,6 @@ export function MailDetails({ mailId, onBack }) {
       <div>
         <span>Labels: {mail.labels.join(', ')}</span>
       </div>
-    </section>
+    </div>
   )
 }

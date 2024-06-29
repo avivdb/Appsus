@@ -1,6 +1,6 @@
 .mail-search {
   position: relative;
-  /* max-width: 70%; */
+
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -11,14 +11,14 @@
 
 .mail-search input[type='search'] {
   flex-grow: 1;
-  padding: 10px 0; /* Adjusted padding to fit the buttons inside */
+  padding: 10px 0;
   font-family: Roboto, Arial, sans-serif;
   font-size: 1em;
   line-height: 27px;
   text-align: start;
   letter-spacing: normal;
   color: #000000;
-  background-color: transparent; /* Make the background transparent to show the parent background */
+  background-color: transparent;
   border: none;
   border-radius: 24px;
   box-shadow: none;
@@ -27,8 +27,8 @@
 
 .btn-search,
 .btn-filteroptions {
-  width: 2.4em; /* 75% of 2em (32px) height */
-  height: 2.4em; /* 75% of 2em (32px) height */
+  width: 2.4em;
+  height: 2.4em;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;

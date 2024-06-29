@@ -16,7 +16,6 @@ export function MailPreview({ mail, onMailClick, onRemoveMail }) {
         button.classList.toggle('checked')
         break
 
-      // Add cases for other buttons as needed
       default:
         break
     }
