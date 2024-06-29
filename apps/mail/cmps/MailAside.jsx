@@ -17,6 +17,12 @@ export function MailAside({ mails, onAddMail }) {
           onCancelEdit={() => setIsCompose(false)}
         />
       )}
+      <button className='mail-aside-btn-inbox'>Inbox</button>
+      <button className='mail-aside-btn-sent'>Sent</button>
+      <button className='mail-aside-btn-trash'>Trash</button>
+      <button className='mail-aside-btn-drafts'>Drafts</button>
+      <button className='mail-aside-btn-starred'>Starred</button>
+      <button className='mail-aside-btn-important'>Important</button>
     </section>
   )
 }

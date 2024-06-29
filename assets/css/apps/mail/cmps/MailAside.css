@@ -1,12 +1,13 @@
 .mail-aside {
-  background-color: rgb(221, 241, 234);
+  background-color: var(--mail-main-bg);
 }
 
 button.compose-btn {
   background-image: none;
-  width: 118px;
+  width: 119px;
   height: 56px;
-  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  min-width: 96px;
+  font-family: 'google-sans', sans-serif;
   font-size: 14px;
   line-height: 32px;
   text-align: center;
@@ -19,9 +20,10 @@ button.compose-btn {
   cursor: pointer;
   outline: none;
   display: flex;
+
   align-items: center;
   justify-content: center;
-  padding: 0 16px; /* Adjust padding to position text nicely */
+  padding: 0 16px 0 0; /* Adjust padding to position text nicely */
 }
 
 button.compose-btn::before {

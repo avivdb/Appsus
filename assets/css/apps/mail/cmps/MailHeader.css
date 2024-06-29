@@ -1,13 +1,89 @@
-/* .mail-header-menu {
-  grid-column: 1 / 2;
+.mail-header {
+  display: contents;
+  background-color: var(--mail-main-bg);
+}
+
+.mail-header-menu {
+  display: flex;
+  grid-column: 1 / 1;
+  align-items: center;
+  gap: 8px;
 }
 
 .mail-header-search {
   grid-column: 2 / 3;
+  align-self: center;
 }
 
 .mail-header-nav {
-  grid-column: 3 / 4;
   display: flex;
+  align-items: center;
+  grid-column: 3 / 4;
+
   justify-content: space-around;
+}
+
+/* button.logo.mail-header.wide {
+  background-image: url('../../../../../apps/mail/assets/icons/logo_gmail_lockup_default_1x_r5.png');
 } */
+
+/* button.menu-toggle-width {
+  background-image: url('../../../../../apps/mail/assets/icons/menu_lines.svg');
+} */
+
+button.mail-menu-toggle-width {
+  background-image: url('../../../../../apps/mail/assets/icons/menu_lines.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+button.mail-logo-header-wide {
+  background-image: url('../../../../../apps/mail/assets/icons/logo_gmail_lockup_default_1x_r5.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.mail-header-nav-btn-help {
+  background-image: url('../../../../../apps/mail/assets/icons/help.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.mail-header-nav-btn-settings {
+  background-image: url('../../../../../apps/mail/assets/icons/settings.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.mail-header-nav-btn-appselector {
+  background-image: url('../../../../../apps/mail/assets/icons//appselector.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.mail-header-nav-btn-userlogo {
+  background-image: url('../../../../../apps/mail/assets/icons//userlogo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}

@@ -82,9 +82,7 @@ export function MailIndex() {
             onMailClick={handleMailClick}
             onRemoveMail={onRemoveMail}
           />
-          <div className='add-ons'>
-            <h1>Add-ons</h1>
-          </div>
+          <div className='add-ons'>{/* <h1>Add-ons</h1> */}</div>
         </React.Fragment>
       )}
     </section>

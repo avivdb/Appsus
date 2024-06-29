@@ -2,10 +2,12 @@
   display: contents; /* Use contents to make the children use the grid from the parent */
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid color var(--mail-list-border-color);
   background: #f2f6fc;
   transition: all 0.3s ease;
   cursor: pointer;
+  height: 20px;
+  overflow: hidden;
 }
 
 .mail-preview.unread {
