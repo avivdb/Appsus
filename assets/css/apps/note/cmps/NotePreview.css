@@ -1,14 +1,22 @@
 .note-preview{
-   display: grid;
+  /* display: grid; */
+    border-radius: 8px;
+    padding: 1em;
+    height: fit-content;
+    border:1px #00000076;
+    position: relative;
+}
+
+.note-preview details{
+    display: grid;
+    /* flex-wrap: wrap; */
+    gap: 1em;
     justify-content: center;
     justify-items: center;
     justify-self: center;
-    gap: 1em;
-    border-radius: 8px;
-    padding: 0.5em;
-    
-    /* margin: 0.5em; */
-    /* border: 1px solid lightgrey; */
-    /* box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.425), inset 0 -1px 0 rgba(0, 0, 0, 0.543); */
-    /* width: 300px; */
+}
+
+.note-preview:hover{
+  
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px 0px
 }

@@ -1,17 +1,18 @@
 .note-index {
-    display: grid;
+    /* display: grid; */
+    position: relative;
     font-family: 'Roboto';
     font-size: 15px;
     color: #202124;
      padding: 1em;
  }
 
-input{
+input,textarea{
     border:none;
     padding: 1em;
     width: 100%;
     
-    font-size: 15px;
+    font-size: 1.333333em;
     color: #202124;
     font-family: 'Roboto';
     display: grid;
@@ -20,10 +21,25 @@ input{
     justify-self: center;
     background-color: inherit;
     /* gap: 1em; */
-    /* border-radius: 8px; */
+    border-radius: 8px;
     /* padding: 0.5em; */
 }
  input:focus{
     outline: none;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); */
+}
+
+textarea{
+    width: 100%;
+    font-family: 'Roboto';
+
+    background-color: inherit;
+    border: none;
+    resize: vertical;
+    height: fit-content;
+}
+textarea:focus-visible{
+    border: none;
+    outline: none;
+
 }

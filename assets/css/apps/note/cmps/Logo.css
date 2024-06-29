@@ -1,0 +1,11 @@
+.logo{
+    display: flex;
+    align-items: center;
+    /* height: 2.66667em; */
+    margin-inline-end: 3em;
+}
+.logo h1{
+    font-size: 1.46666em;
+    color: #5f6368;
+    line-height: 1.6em;
+}

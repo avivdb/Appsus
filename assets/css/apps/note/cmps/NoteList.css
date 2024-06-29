@@ -1,45 +1,36 @@
  /* note list */
  .note-list {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fill,300px);
-    grid-auto-rows: minmax(100px,fit-content);
+    grid-auto-rows: min-content;
     grid-auto-flow: dense;
     justify-content: center;
     gap: 1em;
     list-style: none;
+    padding: 0;
+    width: 100%;
+    height: fit-content; */
+
+    column-count: 4; /* Number of columns */
+    column-gap: 1em; /* Space between columns */
+    list-style-type: none;
+    /* width: 300px; */
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    /* max-width: 1200px; */
 }
 
-.note-list ul li {
- /* height: 100%; */
+.note-list li {
+    /* background-color: #fff; */
+    display: inline-block;
+    margin: 0 0 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* padding: 20px; */
+    /* box-sizing: border-box; */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    transition: transform 0.2s;
+     /* overflow: visible; */
 }
-
-    /* display: grid;
-    border-radius: 15px;
-    gap: 1em; */
-    /* padding: 1em; */
-     /* background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column; */
-    /* padding: 1em; */
-    /* transition: box-shadow 0.2s ease; */
-    /* width: 100%;
-    
-}
-.note-list ul li:hover {
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
-
-
-/* .close {
-    position: absolute;
-    border-radius: 50%;
-    top: -7px;
-    right: -7px;
-    background: rgb(207, 158, 158);
-} */
-
-/* .notes-list li:hover img {
-    animation: bounceIn;
-    animation-duration: 2s;
-} */

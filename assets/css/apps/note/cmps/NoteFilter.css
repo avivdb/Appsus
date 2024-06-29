@@ -1,4 +1,16 @@
 .note-filter{
-    margin-inline-end: 0.5em;
+    margin-inline-end: 1em;
     display: flex;
+    background-color: #f1f3f4;
+    border-radius: 0.5em;
+    align-items: center;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px 0px
+
+}
+.note-filter button{
+    /* display: none; */
+}
+.note-filter input:focus{
+    background-color: #ffffff;
 }

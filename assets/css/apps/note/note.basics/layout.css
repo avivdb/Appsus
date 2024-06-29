@@ -1,0 +1,17 @@
+.main-layout{
+    display:grid;
+    grid-template-columns: minmax(20px,100px) minmax(300px,1fr) minmax(20px,100px) ;
+    justify-content: center;
+    justify-items: center;
+    gap: 1em;
+    row-gap: 3em;
+}
+
+.main-layout >*{
+    grid-column: 2;
+}
+
+.main-layout .full{
+    grid-column: -1/1;
+
+}

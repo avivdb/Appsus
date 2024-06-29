@@ -1,4 +1,19 @@
 .note-nav{
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* gap: 1em; */
+    /* padding: 1em 0;
+     */
+    width: 100%;
+    /* flex-shrink: 0; */
+}
+
+.note-nav:last-child{
+   /* margin-inline-start: 3em; */
+   border-radius: 0;
+}
+.close-btn{
+    border-radius: 2px;
 }
