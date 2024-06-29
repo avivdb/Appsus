@@ -1,10 +1,73 @@
-/* Added styles for mail-index to ensure proper layout */
 .mail-index {
+  display: grid;
+  grid-template-columns: 3fr 8fr 1fr;
+  grid-template-rows: 60px 1fr;
+  gap: 20px;
+  padding: 8px;
+  background-color: #fff;
+}
+
+.mail-header {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  display: grid;
+  grid-template-columns: 3fr 8fr 1fr;
+  align-items: center;
+  padding: 8px;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000; /* Ensure it stays above other content when scrolling */
+}
+
+.mail-aside {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  max-height: max-content;
+  overflow-y: auto;
+}
+
+.compose-btn {
+  grid-column: 1 / 2;
+  margin: 8px;
+}
+
+.mail-list {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  max-height: max-content;
+  overflow-y: auto;
+}
+
+.add-ons {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  max-height: max-content;
+  overflow-y: auto;
+}
+
+/* .mail-index {
+  display: grid;
+  grid-template-columns:
+    minmax(20px, 1fr)
+    minmax(auto, 1018px)
+    minmax(20px, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'as he he'
+    'as li li';
+  gap: 20px;
   padding: 20px;
   background-color: #fff;
 }
 
-.mail-index > div {
-  font-size: 24px;
-  margin-bottom: 20px;
+.mail-header {
+  grid-area: he;
 }
+
+.mail-list {
+  grid-area: li;
+}
+.mail-aside {
+  grid-area: as;
+} */

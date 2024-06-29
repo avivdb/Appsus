@@ -1,0 +1,13 @@
+.mail-header-menu {
+  grid-column: 1 / 2;
+}
+
+.mail-header-search {
+  grid-column: 2 / 3;
+}
+
+.mail-header-nav {
+  grid-column: 3 / 4;
+  display: flex;
+  justify-content: space-around;
+}
