@@ -15,7 +15,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
   }
   return (
     <React.Fragment>
-      <h2>Filter mails</h2>
+      {/* <h2>Filter mails</h2> */}
       <section className='mail-filter'>
         <form className='mail-search' onSubmit={onSubmitSearch}>
           <button className='btn-search' type='submit'></button>

@@ -1,8 +1,12 @@
 .mail-index {
   /* pallete  */
   --mail-main-bg: #f2f6fc;
+  --mail-main-white: #fff;
   --mail-list-items-unread: #d3e3fd;
   --mail-list-items-read: #fff;
+  --mail-list-border-color: rgb(128, 128, 128);
+  --mail-list-text-unread: rgb(32, 33, 36);
+  --mail-button-main-hover: rgba(60, 64, 67, 0.08);
 
   /* --clr000: #b4ad9e;
   --clr001: #626262;
