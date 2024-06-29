@@ -4,7 +4,7 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.servic
 import { NoteNav } from "./NoteNav.jsx"
 import { NoteImg } from "./NoteImg.jsx"
 import { NoteVideo } from './NoteVideo.jsx'
-import { NoteBackground } from "./NoteBackground.jsx"
+import { NoteColor } from "./NoteColor.jsx"
 
 
 const { useParams, useNavigate } = ReactRouter
@@ -65,9 +65,9 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
     function handleChangeStyle({ target }) {
         const { type, name: prop } = target
         let { value } = target
-        console.log('target', target)
-        console.log('prop', prop)
-        console.log('value', value)
+        // console.log('target', target)
+        // console.log('prop', prop)
+        // console.log('value', value)
         setCurrNote(prevNote => ({
             ...prevNote,
             style: { ...prevNote.style, [prop]: value }
@@ -181,7 +181,7 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                     name='backgroundColor'
                     className="bg-color" /> */}
 
-                {/* <NoteBackground currNote={currNote} handleChangeStyle={handleChangeStyle} /> */}
+                {/* <NoteColor currNote={currNote} handleChangeStyle={handleChangeStyle} /> */}
 
                 {currNote.info.imgUrls && currNote.info.imgUrls.map((url, index) => (
                     <div key={index}>

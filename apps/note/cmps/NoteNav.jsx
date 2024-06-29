@@ -1,4 +1,4 @@
-import { NoteBackground } from "./NoteBackground.jsx";
+import { NoteColor } from "./NoteColor.jsx";
 
 
 export function NoteNav({ note, onRemove, onSave, onAddPic, onAddVideo, onAddTodo, handleChangeStyle }) {
@@ -45,7 +45,7 @@ export function NoteNav({ note, onRemove, onSave, onAddPic, onAddVideo, onAddTod
                     <path d="M18 9l-1.4-1.4-6.6 6.6-2.6-2.6L6 13l4 4z" />
                 </svg>
             </button>
-            <NoteBackground className="btn" currNote={note} handleChangeStyle={handleChangeStyle} />
+            <NoteColor className="btn" currNote={note} handleChangeStyle={handleChangeStyle} />
             <button className="close-btn" onClick={onSave}>Close</button>
 
         </nav>
