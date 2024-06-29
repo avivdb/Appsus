@@ -8,16 +8,16 @@ export function MailHeader({ filterBy, onSetFilter }) {
           <button className='mail-menu-toggle-width'></button>
           <button className='mail-logo-header-wide'></button>
         </div>
-        <div className='mail-header-search'>
-          <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-        </div>
-        <div className='mail-header-nav'>
-          <section className='mail-header-nav'>
+        <div className='mail-header-main'>
+          <div className='mail-header-search'>
+            <MailFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+          </div>
+          <div className='mail-header-nav'>
             <button className='mail-header-nav-btn-help'></button>
             <button className='mail-header-nav-btn-settings'></button>
             <button className='mail-header-nav-btn-appselector'></button>
             <button className='mail-header-nav-btn-userlogo'></button>
-          </section>
+          </div>
         </div>
       </section>
     </React.Fragment>

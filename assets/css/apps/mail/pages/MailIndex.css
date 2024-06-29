@@ -1,10 +1,11 @@
 .mail-index {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr; /* Adjusted column sizes for better alignment */
+  grid-template-columns: 1fr 8fr 40px; /* Adjusted column sizes for better alignment */
   grid-template-rows: 65px minmax(540px, 1fr); /* Header row and main content row */
   gap: 20px;
   padding: 8px;
   background-color: var(--mail-main-bg);
+  height: 100vh;
 }
 
 .mail-header {

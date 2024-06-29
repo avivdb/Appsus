@@ -1,35 +1,39 @@
 .mail-header {
-  display: contents;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
   background-color: var(--mail-main-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .mail-header-menu {
   display: flex;
-  grid-column: 1 / 1;
+
   align-items: center;
   gap: 8px;
 }
 
-.mail-header-search {
+.mail-header-main {
+  display: flex;
   grid-column: 2 / 3;
-  align-self: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mail-header-search {
+  flex-grow: 1;
+  margin-right: 40px;
 }
 
 .mail-header-nav {
   display: flex;
   align-items: center;
-  grid-column: 3 / 4;
-
-  justify-content: space-around;
+  justify-content: flex-end;
+  margin-left: auto;
 }
-
-/* button.logo.mail-header.wide {
-  background-image: url('../../../../../apps/mail/assets/icons/logo_gmail_lockup_default_1x_r5.png');
-} */
-
-/* button.menu-toggle-width {
-  background-image: url('../../../../../apps/mail/assets/icons/menu_lines.svg');
-} */
 
 button.mail-menu-toggle-width {
   background-image: url('../../../../../apps/mail/assets/icons/menu_lines.svg');
@@ -57,8 +61,8 @@ button.mail-logo-header-wide {
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  width: 40px;
-  height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   cursor: pointer;
 }
 .mail-header-nav-btn-settings {
@@ -66,8 +70,8 @@ button.mail-logo-header-wide {
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  width: 40px;
-  height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   cursor: pointer;
 }
 .mail-header-nav-btn-appselector {
@@ -75,8 +79,8 @@ button.mail-logo-header-wide {
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  width: 40px;
-  height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   cursor: pointer;
 }
 .mail-header-nav-btn-userlogo {
@@ -84,7 +88,7 @@ button.mail-logo-header-wide {
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
-  width: 40px;
-  height: 40px;
+  max-width: 20px;
+  max-height: 20px;
   cursor: pointer;
 }

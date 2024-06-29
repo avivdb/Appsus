@@ -18,8 +18,7 @@
   transition: background 0.3s ease, height 0.3s ease;
   position: relative;
   cursor: pointer;
-  height: 20px;
-  min-height: 2.5em; /* Minimum height to maintain size */
+  max-height: 60px;
   overflow: hidden;
 }
 
