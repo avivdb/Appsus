@@ -36,3 +36,7 @@
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailAside.css';
 @import './apps/mail/cmps/MailHeader.css';
+
+/* MAIL SETUP */
+@import './apps/mail/setup/vars.css';
+@import '/apps/mail/setup/fonts.css';
