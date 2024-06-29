@@ -9,11 +9,11 @@ const breakpointColumnsObj = {
     500: 1
 };
 
-export function NoteGrid({ notes, removeNote, setIsAdd, setIsEdit, startEditing }) {
+export function NoteGrid({ notes, removeNote, setIsAdd, setIsEdit, startEditing, className }) {
     return (
         <Masonry
             breakpointCols={breakpointColumnsObj}
-            className="my-masonry-grid"
+            className={className}
             columnClassName="my-masonry-grid_column"
         >
             {notes.map(note => (

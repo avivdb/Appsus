@@ -4,6 +4,7 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.servic
 import { NoteNav } from "./NoteNav.jsx"
 import { NoteImg } from "./NoteImg.jsx"
 import { NoteVideo } from './NoteVideo.jsx'
+import { NoteBackground } from "./NoteBackground.jsx"
 
 
 const { useParams, useNavigate } = ReactRouter
@@ -19,17 +20,18 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
     const [showVideoUrlInput, setShowVideoUrlInput] = useState(false)
     const [newTodo, setNewTodo] = useState('')
     const [showTodoInput, setShowTodoInput] = useState(false)
+    // const [newBackground, setNewBacground] = useState('')
 
     const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        // console.log('setIsEdit', setIsEdit)
+
         if (currNote) return
         if (params.noteId) {
             notesService.get(params.noteId).then(setCurrNote)
         }
-    }, [currNote, params.noteId])
+    }, [params.noteId])
 
     function onSave(ev) {
         ev.preventDefault()
@@ -47,7 +49,6 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
     function handleChange({ target }) {
         const { type, name: prop } = target
         let { value } = target
-        // console.log('target.value,prop', target, value, prop)
         setCurrNote(prevNote => ({ ...prevNote, [prop]: value }))
     }
 
@@ -56,12 +57,20 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
     function handleChangeInfo({ target }) {
         const { type, name: prop } = target
         let { value } = target
-        function addPic() {
-            setPicUrl
-        }
         setCurrNote(prevNote => ({
             ...prevNote,
             info: { ...prevNote.info, [prop]: value }
+        }))
+    }
+    function handleChangeStyle({ target }) {
+        const { type, name: prop } = target
+        let { value } = target
+        console.log('target', target)
+        console.log('prop', prop)
+        console.log('value', value)
+        setCurrNote(prevNote => ({
+            ...prevNote,
+            style: { ...prevNote.style, [prop]: value }
         }))
     }
 
@@ -119,9 +128,8 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
             info: { ...prevNote.info, todo: updatedTodo }
         }));
     }
-    // function handleCloseBtn() {
-    //     setIsEdit(false)
-    // }
+
+
     const {
         id,
         createdAt,
@@ -162,15 +170,33 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                     name='txt'
                     className="txtarea" />
 
+
+                {/* <label htmlFor="backgroundColor"></label>
+                <input
+                    onChange={handleChangeStyle}
+                    value={currNote.style.backgroundColor}
+                    // placeholder="Take a note..."
+                    id='backgroundColor'
+                    type="color"
+                    name='backgroundColor'
+                    className="bg-color" /> */}
+
+                {/* <NoteBackground currNote={currNote} handleChangeStyle={handleChangeStyle} /> */}
+
                 {currNote.info.imgUrls && currNote.info.imgUrls.map((url, index) => (
                     <div key={index}>
                         <NoteImg note={{ info: { imgUrl: url } }} />
-                        <button onClick={() => handleDeleteImg(index)}>x</button>
+                        <button onClick={() => handleDeleteImg(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#000000">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                            </svg>
+
+                        </button>
                     </div>
                 ))}
 
                 {showImgUrlInput && (
-                    <div>
+                    <div className="add-img">
                         <label htmlFor="newImgUrl"></label>
                         <input
                             type="text"
@@ -178,19 +204,30 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                             value={newImgUrl}
                             onChange={(e) => setNewImgUrl(e.target.value)}
                         />
-                        <button onClick={handleAddPic}>+</button>
+                        <button onClick={handleAddPic}>
+                            <svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">
+                                <path d="m38 26h-12v12h-4v-12h-12v-4h12v-12h4v12h12v4z" />
+                                <path d="m0 0h48v48h-48z" fill="none" />
+                            </svg>
+
+                        </button>
                     </div>
                 )}
 
                 {currNote.info.videoUrls && currNote.info.videoUrls.map((url, index) => (
                     <div key={index}>
                         <NoteVideo note={{ info: { videoUrl: url } }} />
-                        <button onClick={() => handleDeleteVideo(index)}>x</button>
+                        <button onClick={() => handleDeleteVideo(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#000000">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                            </svg>
+
+                        </button>
                     </div>
                 ))}
 
                 {showVideoUrlInput && (
-                    <div>
+                    <div className="add-video">
                         <label htmlFor="newVideoUrl"></label>
                         <input
                             type="text"
@@ -198,19 +235,30 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                             value={newVideoUrl}
                             onChange={(e) => setNewVideoUrl(e.target.value)}
                         />
-                        <button onClick={handleAddVideo}>+</button>
+                        <button onClick={handleAddVideo}>
+                            <svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">
+                                <path d="m38 26h-12v12h-4v-12h-12v-4h12v-12h4v12h12v4z" />
+                                <path d="m0 0h48v48h-48z" fill="none" />
+                            </svg>
+
+                        </button>
                     </div>
                 )}
 
                 {todo.map((task, index) => (
-                    <div key={index}>
-                        <span>{task}</span>
-                        <button onClick={() => handleDeleteTodo(index)}>x</button>
+                    <div className="show-todo" key={index}>
+                        {task}
+                        <button onClick={() => handleDeleteTodo(index)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#000000">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                            </svg>
+
+                        </button>
                     </div>
                 ))}
 
                 {showTodoInput && (
-                    <div>
+                    <div className="add-todo">
                         <label htmlFor="newTodo"></label>
                         <input
                             type="text"
@@ -218,7 +266,13 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
                         />
-                        <button onClick={handleAddTodo}>+</button>
+                        <button onClick={handleAddTodo}>
+                            <svg height="18px" width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#000000">
+                                <path d="m38 26h-12v12h-4v-12h-12v-4h12v-12h4v12h12v4z" />
+                                <path d="m0 0h48v48h-48z" fill="none" />
+                            </svg>
+
+                        </button>
                     </div>
                 )}
 
@@ -227,16 +281,12 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
 
             {<NoteNav
                 note={currNote}
-                // onRemove={() => notesService.remove(currNote.id).then(() => navigate('/note'))}
                 onRemove={removeNote}
                 onSave={onSave}
                 onAddPic={() => setShowImgUrlInput(true)}
                 onAddVideo={() => setShowVideoUrlInput(true)}
                 onAddTodo={() => setShowTodoInput(true)}
-                onClose={() => {
-                    console.log('setIsEdit', setIsEdit)
-                    setIsEdit(false)
-                }}
+                handleChangeStyle={handleChangeStyle}
             />}
 
         </section>

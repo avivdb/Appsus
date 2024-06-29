@@ -68,12 +68,18 @@ export function NoteIndex() {
 
                 <AddNote setIsAdd={setIsAdd} />
             )}
-            {/* <NoteList notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} /> */}
-            {isEdit ? (
+            <NoteGrid className={`my-masonry-grid ${isEdit ? 'modal' : ''}`}
+                notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} startEditing={startEditing} />
+
+            {isEdit && (
                 <NoteEdit note={currNote} removeNote={removeNote} setIsEdit={setIsEdit} setIsAdd={setIsAdd} className="note-edit-preview" style={currNote.style} />
-            ) : (
-                <NoteGrid notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} startEditing={startEditing} />
-            )}
+
+
+            )
+                // : (
+                //     <NoteGrid notes={notes} removeNote={removeNote} setIsAdd={setIsAdd} startEditing={startEditing} />
+                // )
+            }
         </section>
     )
 }

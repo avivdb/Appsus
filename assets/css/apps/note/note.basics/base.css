@@ -1,4 +1,4 @@
-button{
+button,.btn{
     display: grid;
     justify-content: center;
     align-content: center;
@@ -15,7 +15,7 @@ button{
     border-radius: 50%;
 }
 
-button:hover{
+button:hover,.btn:hover{
     /* color: #5f6368; */
     background-color: #959a9d95;
     border: none;
@@ -25,5 +25,6 @@ svg{
       fill: #5f6368;
       width: 1.2em;
       height: 1.2em;
+      
 
 }

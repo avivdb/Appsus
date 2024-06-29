@@ -16,3 +16,8 @@
   width: 300px;
   gap: 1em;
 }
+.modal{
+  position: relative;
+  opacity: 0.5;
+
+}

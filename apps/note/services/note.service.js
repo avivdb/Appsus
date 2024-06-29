@@ -109,7 +109,7 @@ function getEmptyNote() {
             todo: [],
         },
         style: {
-            backgroundColor: '',
+            backgroundColor: '#fff',
         }
     }
 }

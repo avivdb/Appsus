@@ -1,12 +1,13 @@
 header {
-    background: lightcyan;
+    background: var(--main-bg-color);
     border-bottom: 2px solid white;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 1em;
+    
 }
 
 nav a {

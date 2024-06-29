@@ -7,7 +7,7 @@
     margin: 0.5em;
     border-radius: 8px;
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px 0px
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px 0px;
 }
 
 .note-edit details{
@@ -37,14 +37,37 @@ border-bottom-right-radius: 0; */
     display: grid;
     justify-self: center;
     gap: 1em;
+
     margin: 0.5em;
+    border:1px #00000033 solid;
+
     border-radius: 8px;
     width: 60%;
     min-width: 300px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px 0px;
     padding: 1em;
-    
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
 }
 .txtarea:focus{
     border: none;
+}
+
+.add-todo,.show-todo,.add-video,.add-img{
+    display:flex;
+    align-items: center;
+    padding: 1.333333em;
+    gap: 1em;
+}
+
+.note-todo{
+    padding-left: 1.333333em;
+    font-family: 'Roboto';
+    font-size: 1.33333em;
+
 }
