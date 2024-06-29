@@ -4,7 +4,7 @@
   grid-template-rows: 100px 1fr; /* Header row and main content row */
   gap: 20px;
   padding: 8px;
-  background-color: #fff;
+  background-color: #d3e3fd;
 }
 
 .mail-header {

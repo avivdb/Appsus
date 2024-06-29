@@ -1,0 +1,10 @@
+.mail-index {
+  /* pallete  */
+  --mail-main-bg: #f2f6fc;
+  --mail-list-items-unread: #d3e3fd;
+  --mail-list-items-read: #fff;
+
+  /* --clr000: #b4ad9e;
+  --clr001: #626262;
+  --clr002: #000; */
+}
