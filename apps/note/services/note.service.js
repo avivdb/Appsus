@@ -4,46 +4,75 @@ import { storageService } from "../../../services/async-storage.service.js"
 
 const NOTE_KEY = 'noteBD'
 
-const gNotes = [
-    {
-        id: 'n101',
-        createdAt: 1112222,
-        type: 'NoteTxt',
-        isPinned: true,
-        style: {
-            backgroundColor: '#00d'
-        },
-        info: {
-            txt: 'Fullstack Me Baby!'
-        }
-    },
-    {
-        id: 'n102',
-        createdAt: 1112223,
-        type: 'NoteImg',
-        isPinned: false,
-        info: {
-            url: 'http://some-img/me',
-            title: 'Bobi and Me'
-        },
-        style: {
-            backgroundColor: '#00d'
-        }
-    },
-    {
-        id: 'n103',
-        createdAt: 1112224,
-        type: 'NoteTodos',
-        isPinned: false,
-        info: {
-            title: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-            ]
-        }
-    }
-]
+const demoData = {
+    imgs: [
+        "https://placekitten.com/200/300",
+        "https://placedog.net/400/300",
+        "https://picsum.photos/200/300?random=1",
+        "https://loremflickr.com/320/240/bird",
+        "https://placebunny.net/300/400",
+        "https://picsum.photos/200/300?random=2",
+        "https://placeimg.com/640/480/any",
+        "https://placebeard.it/400x300",
+        "https://placebear.com/400/300",
+        "https://loremflickr.com/320/240/cat",
+        "https://placecage.com/200/300",
+        "https://placeimg.com/640/480/nature",
+        "https://placebeard.it/400x300",
+        "https://placekitten.com/200/300",
+        "https://placebeard.it/400x300",
+        "https://placecage.com/200/300",
+        "https://placeimg.com/640/480/tech",
+        "https://placebeard.it/400x300",
+        "https://placebear.com/400/300",
+        "https://placecage.com/200/300"
+    ],
+    videos: [
+        "https://www.youtube.com/embed/j5a0jTc9S10",
+        "https://www.youtube.com/embed/5qap5aO4i9A",
+        "https://www.youtube.com/embed/6JYIGclVQdw",
+        "https://www.youtube.com/embed/HDVGq9Rshbs",
+        "https://www.youtube.com/embed/SWYqp7iY_Tc",
+        "https://www.youtube.com/embed/UJjioy46L_4",
+        "https://www.youtube.com/embed/Ifwknpd3Ghs",
+        "https://www.youtube.com/embed/Z7Vu6lW9KWg",
+        "https://www.youtube.com/embed/M61r86jR4Fc",
+        "https://www.youtube.com/embed/7v_JEMpsB8w",
+        "https://www.youtube.com/embed/Jk2Iot4w7E4",
+        "https://www.youtube.com/embed/vIN4jwRgBdM",
+        "https://www.youtube.com/embed/RJdp9-gP2Dk",
+        "https://www.youtube.com/embed/UJjioy46L_4",
+        "https://www.youtube.com/embed/mIYzpHjGw8o",
+        "https://www.youtube.com/embed/RlGJzIMs7_g",
+        "https://www.youtube.com/embed/vT2w4Kmz6tk",
+        "https://www.youtube.com/embed/4rq8Pof6OfE",
+        "https://www.youtube.com/embed/kJQP7kiw5Fk",
+        "https://www.youtube.com/embed/3JZ_D3ELwOQ"
+    ],
+    todos: [
+        'buy groceries',
+        'swim',
+        'complete project report',
+        'clean the house',
+        'write blog post',
+        'study for exam',
+        'go for a jog',
+        'plan vacation',
+        'attend meeting',
+        'practice guitar',
+        'read book',
+        'bake cookies',
+        'paint picture',
+        'organize files',
+        'research new technology',
+        'volunteer at shelter',
+        'practice yoga',
+        'watch movie',
+        'visit museum',
+        'play video games'
+    ]
+}
+
 _createNotes()
 
 export const notesService = {
@@ -60,20 +89,12 @@ window.bs = notesService
 function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
         .then(notes => {
-            // console.log('notes:', notes)
 
             if (filterBy.title) {
                 const regExp = new RegExp(filterBy.title, 'i')
                 notes = notes.filter(note => regExp.test(note.info.title) || regExp.test(note.info.txt));
             }
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     notes = notes.filter(note => regExp.test(note.info.txt))
-            // }
-            // if (filterBy.type) {
 
-            //     notes = notes.filter(note => note.type === filterBy.type)
-            // }
             return notes
         })
 }
@@ -118,6 +139,8 @@ function getDefaultFilter(filterBy = {}) {
     return { txt: filterBy.txt || '', type: filterBy.type || '', title: filterBy.title || '' }
 }
 
+
+
 function _createNotes() {
 
     const notes = utilService.loadFromStorage(NOTE_KEY) || []
@@ -125,6 +148,7 @@ function _createNotes() {
     if (notes && notes.length) return
 
     for (let i = 0; i < 20; i++) {
+
         const note = {
             id: utilService.makeId(),
             createdAt: utilService.getRandomDate('2022-01-01', '2024-06-30'),
@@ -133,8 +157,9 @@ function _createNotes() {
             info: {
                 title: utilService.makeLorem(5),
                 txt: utilService.makeLorem(utilService.getRandomIntInclusive(0, 20)),
-                imgUrl: ``,
-                todo: [],
+                imgUrls: [demoData.imgs[i]],
+                videoUrls: [demoData.videos[i]],
+                todo: [demoData.todos[i]],
             },
             style: {
                 backgroundColor: utilService.getRandomColor(),
@@ -142,10 +167,12 @@ function _createNotes() {
         }
 
         notes.push(note)
-        // console.log(note)
+
     }
     utilService.saveToStorage(NOTE_KEY, notes)
 }
+
+
 function _setNextPrevNoteId(note) {
     return storageService.query(NOTE_KEY)
         .then((notes) => {

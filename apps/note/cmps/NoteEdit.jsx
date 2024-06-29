@@ -171,17 +171,6 @@ export function NoteEdit({ note, setIsAdd, removeNote, setIsEdit, className, han
                     className="txtarea" />
 
 
-                {/* <label htmlFor="backgroundColor"></label>
-                <input
-                    onChange={handleChangeStyle}
-                    value={currNote.style.backgroundColor}
-                    // placeholder="Take a note..."
-                    id='backgroundColor'
-                    type="color"
-                    name='backgroundColor'
-                    className="bg-color" /> */}
-
-                {/* <NoteColor currNote={currNote} handleChangeStyle={handleChangeStyle} /> */}
 
                 {currNote.info.imgUrls && currNote.info.imgUrls.map((url, index) => (
                     <div key={index}>

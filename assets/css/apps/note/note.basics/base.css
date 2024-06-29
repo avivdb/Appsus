@@ -21,10 +21,10 @@ button:hover,.btn:hover{
     border: none;
     cursor: pointer;
 }
-svg{
-      fill: #5f6368;
-      width: 1.2em;
-      height: 1.2em;
-      
 
+svg{
+  fill: #5f6368;
+  width: 1.2em;
+  height: 1.2em;
 }
+

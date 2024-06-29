@@ -71,3 +71,14 @@ border-bottom-right-radius: 0; */
     font-size: 1.33333em;
 
 }
+
+.note-img,.note-video{
+    display: flex;
+    justify-content: center;
+    padding: 1em 0;
+}
+.note-edit-preview img,.note-edit-preview iframe{
+     width: 20%;
+    object-fit: cover;
+    object-position: center;
+}
