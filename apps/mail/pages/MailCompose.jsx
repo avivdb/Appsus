@@ -85,7 +85,7 @@ export function MailCompose({ onAddMail, onCancelEdit }) {
   const { to, from, subject, body, sentAt } = mail
 
   return (
-    <section className='mail-edit'>
+    <section className='mail-compose'>
       <h2>Add mail</h2>
       {/* <AddMail /> */}
       Add a mail manually:

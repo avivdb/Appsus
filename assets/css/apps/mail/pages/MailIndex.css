@@ -29,7 +29,8 @@
   overflow-y: auto;
 }
 
-.main-mail-list {
+.main-mail-list,
+.mail-compose {
   grid-row: 2 / 3;
   max-height: max-content;
   overflow-y: auto;

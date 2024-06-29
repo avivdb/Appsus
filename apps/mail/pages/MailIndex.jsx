@@ -6,17 +6,16 @@ import { MailList } from '../cmps/MailList.jsx'
 import { MailAside } from '../cmps/MailAside.jsx'
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailDetails } from './MailDetails.jsx'
-// Remove the import of MailCompose
-// import { MailCompose } from './MailCompose.jsx'
+import { MailCompose } from './MailCompose.jsx'
 import { mailService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 
 export function MailIndex() {
   const [mails, setMails] = useState(null)
-  // Remove isCompose state
-  // const [isCompose, setIsCompose] = useState(false)
+  const [isCompose, setIsCompose] = useState(false)
+
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-  const [selectedMailId, setSelectedMailId] = useState(null)
+  const [selectedMailId, setSelectedMailId] = useState(null) // Car Details
 
   useEffect(() => {
     loadMails()
@@ -51,23 +50,38 @@ export function MailIndex() {
       .then(() => {
         console.log('mail removed')
         console.log(mailId)
+        // loadBooks()
         setMails((mails) => mails.filter((mail) => mail.id !== mailId))
+        // showSuccessMsg('Book removed successfully')
       })
-      .catch((err) => console.log('err ', err))
+      .catch(
+        (err) => console.log('err ', err)
+        // showErrorMsg('Cannot remove book')
+      )
   }
 
   function onAddMail(mailToSave) {
     if (!mailToSave.to || !mailToSave.subject) return
     mailService.save(mailToSave).then((savedMail) => {
+      setIsCompose(false)
       setMails((prevMails) => [savedMail, ...prevMails])
     })
   }
+  // const { from, subject, body } = filterBy
 
-  if (!mails) return <div>Loading...</div>
+  // Function to toggle compose mode on
+  function onCompose() {
+    setIsCompose(true)
+  }
 
+  // Function to toggle compose mode off
+  function onCancelCompose() {
+    setIsCompose(false)
+  }
   function onSelectMailId(mailId) {
     setSelectedMailId(mailId)
   }
+  if (!mails) return <div>Loading...</div>
 
   return (
     <section className='mail-index'>
@@ -76,13 +90,31 @@ export function MailIndex() {
       ) : (
         <React.Fragment>
           <MailHeader filterBy={filterBy} onSetFilter={onSetFilter} />
-          <MailAside mails={mails} onAddMail={onAddMail} />
-          <MailList
+          <MailAside
             mails={mails}
-            onMailClick={handleMailClick}
-            onRemoveMail={onRemoveMail}
+            onCompose={onCompose}
+            onCancelCompose={onCancelCompose}
+            isCompose={isCompose}
+            onAddMail={onAddMail}
+            setIsCompose={setIsCompose}
           />
-          <div className='add-ons'>{/* <h1>Add-ons</h1> */}</div>
+
+          {isCompose ? (
+            <MailCompose
+              mails={mails}
+              onAddMail={onAddMail}
+              onCancelEdit={onCancelCompose} // Uses onCancelCompose to toggle compose mode off
+            />
+          ) : (
+            <MailList
+              mails={mails}
+              onMailClick={handleMailClick}
+              onRemoveMail={onRemoveMail}
+            />
+          )}
+          {/* <section className='add-ons'>
+            <h1>Add-ons</h1>
+          </section> */}
         </React.Fragment>
       )}
     </section>

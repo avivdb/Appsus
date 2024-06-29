@@ -1,23 +1,30 @@
-import { MailCompose } from './MailCompose.jsx'
-import { useState } from 'React'
+const { useState } = React
+import { MailCompose } from '../pages/MailCompose.jsx'
 
-export function MailAside({ mails, onAddMail }) {
-  const [isCompose, setIsCompose] = useState(false)
+export function MailAside({
+  mails,
+  onAddMail,
+  onCompose,
+  isCompose,
+  setIsCompose,
+}) {
+  //   const [isCompose, setIsCompose] = useState(false)
+
+  console.log('Render MailAside, isCompose:', isCompose)
 
   return (
     <section className='mail-aside'>
-      <button className='compose-btn' onClick={() => setIsCompose(true)}>
+      <button
+        className='compose-btn'
+        onClick={() => {
+          console.log('Compose button clicked')
+          setIsCompose(true)
+        }}
+      >
         Compose
       </button>
-      {isCompose && (
-        <MailCompose
-          mails={mails}
-          onAddMail={onAddMail}
-          onCancelEdit={() => setIsCompose(false)}
-        />
-      )}
+
       <div className='folder-menu'>
-        {/* Added a span for the text within each button for better alignment */}
         <button className='mail-aside-btn mail-aside-btn-inbox'>
           <span>Inbox</span>
         </button>
