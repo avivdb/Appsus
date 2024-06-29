@@ -1,14 +1,14 @@
-@import './assets/css/apps/note/note.basics/layout.css';
-@import './assets/css/apps/note/note.basics/base.css';
+@import './note.basics/layout.css';
+@import './note.basics/base.css';
 
-@import './assets/css/apps/note/cmps/NoteHeader.css';
-@import './assets/css/apps/note/cmps/Logo.css';
-@import './assets/css/apps/note/cmps/NoteFilter.css';
-@import './assets/css/apps/note/pages/NoteIndex.css';
-@import './assets/css/apps/note/cmps/NoteList.css';
-@import '/assets/css/apps/note/cmps/NoteEdit.css';
-@import './assets/css/apps/note/cmps/NotePreview.css';
-@import './assets/css/apps/note/cmps/NoteNav.css';
-@import './assets/css/apps/note/cmps/AddNote.css';
-@import './assets/css/apps/note/cmps/NoteGrid.css';
-@import './assets/css/apps/note/cmps/NoteColor.css'
+@import './cmps/NoteHeader.css';
+@import './cmps/Logo.css';
+@import './cmps/NoteFilter.css';
+@import './pages/NoteIndex.css';
+@import './cmps/NoteList.css';
+@import './cmps/NoteEdit.css';
+@import './cmps/NotePreview.css';
+@import './cmps/NoteNav.css';
+@import './cmps/AddNote.css';
+@import './cmps/NoteGrid.css';
+@import './cmps/NoteColor.css'
