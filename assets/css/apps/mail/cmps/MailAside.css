@@ -23,7 +23,7 @@ button.compose-btn {
 
   align-items: center;
   justify-content: center;
-  padding: 0 16px 0 0; /* Adjust padding to position text nicely */
+  padding: 0 16px 0 0;
 }
 
 button.compose-btn::before {
@@ -32,10 +32,97 @@ button.compose-btn::before {
   background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
   width: 24px;
   height: 24px;
-  margin-right: 8px; /* Space between the icon and the text */
+  margin-right: 8px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.folder-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  font-family: 'google-sans', sans-serif;
+  font-size: 14px;
+
+  margin: 0;
+}
+
+/* General Button Styling */
+.mail-aside-btn {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #202124;
+  text-align: left;
+  width: 100%;
+  border-radius: 0 24px 24px 0;
+  margin: 0;
+  position: relative;
+}
+
+.mail-aside-btn span {
+  flex-grow: 1;
+  padding-left: 36px;
+}
+
+.mail-aside-btn::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mail-aside-btn:hover {
+  background-color: #e8f0fe;
+}
+
+.mail-aside-btn-inbox {
+  justify-self: space-between;
+  background-image: url('../../../../../apps/mail/assets/icons/inbox_fill_baseline_p900_20dp.png');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.mail-aside-btn-starred {
+  background-image: url('../../../../../apps/mail/assets/icons/star_baseline_nv700_20dp.png');
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.mail-aside-btn-important {
+  background-image: url('../../../../../apps/mail/assets/icons/label_important_baseline_nv700_20dp.png');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.mail-aside-btn-sent {
+  background-image: url('../../../../../apps/mail/assets/icons/send_baseline_nv700_20dp.png');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.mail-aside-btn-drafts {
+  background-image: url('../../../../../apps/mail/assets/icons/draft_baseline_nv700_20dp.png');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+}
+
+.mail-aside-btn-trash {
+  background-image: url('../../../../../apps/mail/assets/icons/delete_baseline_nv700_20dp.png');
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  background-position: left 10px center;
 }
 
 /* button.compose-btn {

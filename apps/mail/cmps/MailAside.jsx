@@ -6,7 +6,6 @@ export function MailAside({ mails, onAddMail }) {
 
   return (
     <section className='mail-aside'>
-      <h1>MailAside</h1>
       <button className='compose-btn' onClick={() => setIsCompose(true)}>
         Compose
       </button>
@@ -17,12 +16,27 @@ export function MailAside({ mails, onAddMail }) {
           onCancelEdit={() => setIsCompose(false)}
         />
       )}
-      <button className='mail-aside-btn-inbox'>Inbox</button>
-      <button className='mail-aside-btn-sent'>Sent</button>
-      <button className='mail-aside-btn-trash'>Trash</button>
-      <button className='mail-aside-btn-drafts'>Drafts</button>
-      <button className='mail-aside-btn-starred'>Starred</button>
-      <button className='mail-aside-btn-important'>Important</button>
+      <div className='folder-menu'>
+        {/* Added a span for the text within each button for better alignment */}
+        <button className='mail-aside-btn mail-aside-btn-inbox'>
+          <span>Inbox</span>
+        </button>
+        <button className='mail-aside-btn mail-aside-btn-starred'>
+          <span>Starred</span>
+        </button>
+        <button className='mail-aside-btn mail-aside-btn-important'>
+          <span>Important</span>
+        </button>
+        <button className='mail-aside-btn mail-aside-btn-sent'>
+          <span>Sent</span>
+        </button>
+        <button className='mail-aside-btn mail-aside-btn-drafts'>
+          <span>Drafts</span>
+        </button>
+        <button className='mail-aside-btn mail-aside-btn-trash'>
+          <span>Trash</span>
+        </button>
+      </div>
     </section>
   )
 }
