@@ -32,10 +32,10 @@ button.compose-btn::before {
   background-image: url('../../../../../apps/mail/assets/icons/create_black_24dp.png');
   width: 24px;
   height: 24px;
-  margin-right: 8px;
+  margin-right: 8px; /* Space between the icon and the text */
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left center;
 }
 
 .folder-menu {
@@ -50,23 +50,23 @@ button.compose-btn::before {
 
 /* General Button Styling */
 .mail-aside-btn {
-  display: flex;
-  align-items: center;
-  padding: 20px 20px;
+  display: flex; /* Use flexbox to align items horizontally */
+  align-items: center; /* Center items vertically */
+  padding: 20px 20px; /* Adjust padding for better alignment */
   border: none;
   background: none;
   cursor: pointer;
   color: #202124;
   text-align: left;
-  width: 100%;
-  border-radius: 0 24px 24px 0;
-  margin: 0;
-  position: relative;
+  width: 100%; /* Make buttons full width */
+  border-radius: 0 24px 24px 0; /* Creates the pill shape on the right side */
+  margin: 0; /* Remove margin for better alignment */
+  position: relative; /* Position relative for child elements */
 }
 
 .mail-aside-btn span {
   flex-grow: 1;
-  padding-left: 36px;
+  padding-left: 16px;
 }
 
 .mail-aside-btn::before {
@@ -77,7 +77,7 @@ button.compose-btn::before {
   margin-right: 16px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left center; /* Align all icons to the same position */
 }
 
 .mail-aside-btn:hover {
@@ -100,27 +100,26 @@ button.compose-btn::before {
 .mail-aside-btn-important {
   background-image: url('../../../../../apps/mail/assets/icons/label_important_baseline_nv700_20dp.png');
   background-repeat: no-repeat;
-  background-repeat: no-repeat;
+
   background-position: left 10px center;
 }
 
 .mail-aside-btn-sent {
   background-image: url('../../../../../apps/mail/assets/icons/send_baseline_nv700_20dp.png');
   background-repeat: no-repeat;
-  background-repeat: no-repeat;
+
   background-position: left 10px center;
 }
 
 .mail-aside-btn-drafts {
   background-image: url('../../../../../apps/mail/assets/icons/draft_baseline_nv700_20dp.png');
   background-repeat: no-repeat;
-  background-repeat: no-repeat;
+
   background-position: left 10px center;
 }
 
 .mail-aside-btn-trash {
   background-image: url('../../../../../apps/mail/assets/icons/delete_baseline_nv700_20dp.png');
-  background-repeat: no-repeat;
   background-repeat: no-repeat;
   background-position: left 10px center;
 }

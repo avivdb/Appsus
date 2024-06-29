@@ -8,8 +8,6 @@ export function MailAside({
   isCompose,
   setIsCompose,
 }) {
-  //   const [isCompose, setIsCompose] = useState(false)
-
   console.log('Render MailAside, isCompose:', isCompose)
 
   return (

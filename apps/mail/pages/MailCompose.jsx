@@ -134,28 +134,6 @@ export function MailCompose({ onAddMail, onCancelEdit }) {
           name='body'
         />
 
-        <label className='bold-txt' htmlFor='pages'>
-          Number of pages:{' '}
-        </label>
-        <input
-          onChange={handleChange}
-          value={sentAt}
-          id='pages'
-          type='number'
-          name='sentAt'
-        />
-
-        <label className='bold-txt' htmlFor='isOnSale'>
-          On Sale:{' '}
-        </label>
-        {/* <input
-          onChange={handleChangesubject}
-          checked={subject.isOnSale}
-          id='isOnSale'
-          type='checkbox'
-          name='isOnSale'
-        /> */}
-
         <button className='save-edit-btn' type='submit'>
           Save ✔
         </button>
